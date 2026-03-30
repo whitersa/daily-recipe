@@ -1,5 +1,6 @@
 import { getSettings } from "@/lib/db";
 import Link from "next/link";
+import ManualUpdateButton from "@/components/ManualUpdateButton";
 
 export default async function SettingsPage() {
   const settings = await getSettings();
@@ -81,10 +82,11 @@ export default async function SettingsPage() {
         </section>
       </main>
 
-      <footer className="p-8 bg-white border-t border-black/5 shadow-[0_-10px_30px_rgba(0,0,0,0.02)] flex-none">
+      <footer className="p-8 bg-white border-t border-black/5 shadow-[0_-10px_30px_rgba(0,0,0,0.02)] flex-none space-y-3">
         <button className="w-full bg-[#2D3330] text-white py-4 rounded-xl text-[11px] font-bold uppercase tracking-[0.4em] shadow-lg active:scale-[0.98] transition-all">
           Synchronize Library
         </button>
+        <ManualUpdateButton />
       </footer>
     </div>
   );

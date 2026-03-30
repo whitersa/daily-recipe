@@ -4,18 +4,20 @@
   "description": "Premium minimalist offline recipe companion.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FDFCFB",
-  "theme_color": "#8E9B97",
+  "background_color": "#5D6B67",
+  "theme_color": "#5D6B67",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable any"
     },
     {
       "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable any"
     }
   ]
 }

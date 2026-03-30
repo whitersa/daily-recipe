@@ -1,18 +1,19 @@
 import RecipeCard from "@/components/RecipeCard";
 import SearchHeader from "@/components/SearchHeader";
-import { getRecipes } from "@/lib/db";
+import { getRecipes, Recipe } from "@/lib/db";
 import Link from "next/link";
 
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { cat?: string };
+  searchParams: Promise<{ cat?: string }>;
 }) {
-  const selectedCat = searchParams.cat || '全部';
-  const recipes = await getRecipes(selectedCat);
+  const { cat } = await searchParams;
+  const selectedCat = cat || '全部';
+  const recipes = await getRecipes(selectedCat) as Recipe[];
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-[#FDFCFB]">
+    <div className="flex flex-col h-[100dvh] overflow-hidden bg-[#FDFCFB]">
       {/* Fixed Architectural Header Section - Integrated Search */}
       <header className="px-8 pt-8 pb-0 flex flex-col bg-white border-b border-black/5 z-20 flex-none">
         <div className="flex justify-between items-center mb-8">
@@ -60,7 +61,7 @@ export default async function Home({
 
         <div className="grid grid-cols-1 gap-4">
           {recipes.length > 0 ? (
-            recipes.map((recipe: any, index: number) => (
+            recipes.map((recipe: Recipe, index: number) => (
               <div key={recipe.id} className="animate-fade-in" style={{ animationDelay: `${index * 0.03}s` }}>
                 <RecipeCard recipe={recipe} />
               </div>

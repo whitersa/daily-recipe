@@ -31,12 +31,12 @@ export default function SearchHeader() {
 
       {/* Advanced Filter Modal Overlay - Sharpened & Balanced */}
       {isFilterOpen && (
-        <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4 h-[100dvh]">
           <div 
-            className="absolute inset-0 bg-[#2D3330]/20 backdrop-blur-sm animate-fade-in"
+            className="absolute inset-0 bg-[#2D3330]/60 backdrop-blur-md animate-fade-in"
             onClick={() => setIsFilterOpen(false)}
           ></div>
-          <div className="relative w-full max-w-[480px] bg-white rounded-t-lg sm:rounded-lg shadow-2xl p-7 animate-slide-up space-y-7 border border-black/5">
+          <div className="relative w-full max-w-[480px] bg-white rounded-t-[2.5rem] sm:rounded-2xl shadow-2xl p-8 pt-10 sm:p-7 animate-slide-up space-y-8 border-t border-black/5 pb-[calc(2rem+env(safe-area-inset-bottom))] sm:pb-7">
             <div className="flex justify-between items-center border-b border-black/5 pb-3">
               <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#2D3330]">Advanced Filter</h3>
               <button onClick={() => setIsFilterOpen(false)} className="text-[#8E8C87] hover:text-[#2D3330]">

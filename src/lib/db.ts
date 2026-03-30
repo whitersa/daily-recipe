@@ -1,7 +1,7 @@
 import { sql } from '@vercel/postgres';
 
 // Mock data for local development when database is not connected
-const MOCK_RECIPES = [
+const MOCK_RECIPES: Recipe[] = [
   {
     id: 1,
     title: '番茄牛腩面',
@@ -43,6 +43,17 @@ const MOCK_RECIPES = [
     steps: ['鸡腿去骨煎至皮黄', '倒入自制照烧汁', '收汁切块', '配上蔬菜装盘']
   }
 ];
+
+export interface Recipe {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  time: string;
+  ingredients: string[];
+  steps: string[];
+  image_url?: string;
+}
 
 // Settings Types
 export interface AppSettings {
@@ -109,7 +120,7 @@ export async function getRecipeById(id: string) {
   }
 }
 
-export async function createRecipe(recipe: any) {
+export async function createRecipe(recipe: Recipe) {
   try {
     const { rows } = await sql`
       INSERT INTO recipes (title, description, category, time, ingredients, steps)
@@ -119,13 +130,12 @@ export async function createRecipe(recipe: any) {
     return rows[0];
   } catch (e) {
     const newId = MOCK_RECIPES.length + 1;
-    // @ts-ignore
     MOCK_RECIPES.push({ ...recipe, id: newId });
     return { id: newId };
   }
 }
 
-export async function updateRecipe(id: string, recipe: any) {
+export async function updateRecipe(id: string, recipe: Recipe) {
   try {
     await sql`
       UPDATE recipes 
@@ -141,7 +151,6 @@ export async function updateRecipe(id: string, recipe: any) {
   } catch (e) {
     const index = MOCK_RECIPES.findIndex(r => r.id === Number(id));
     if (index !== -1) {
-      // @ts-ignore
       MOCK_RECIPES[index] = { ...recipe, id: Number(id) };
     }
     return true;

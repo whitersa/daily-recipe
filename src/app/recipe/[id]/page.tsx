@@ -70,7 +70,7 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
         {/* Description - Sharp Muted Box */}
         <div className="relative mb-12 p-6 bg-white rounded-xl border border-black/10 shadow-sm">
            <p className="text-[#2D3330] text-[15px] leading-[1.8] font-bold italic text-left opacity-90">
-            "{recipe.description}"
+            &quot;{recipe.description}&quot;
           </p>
         </div>
 

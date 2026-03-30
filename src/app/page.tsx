@@ -15,7 +15,7 @@ export default async function Home({
   return (
     <div className="flex flex-col h-[100dvh] overflow-hidden bg-[#FDFCFB]">
       {/* Fixed Architectural Header Section - Integrated Search */}
-      <header className="px-8 pt-8 pb-0 flex flex-col bg-white border-b border-black/5 z-20 flex-none">
+      <header className="px-8 pt-[calc(2rem+env(safe-area-inset-top))] pb-0 flex flex-col bg-white border-b border-black/5 z-20 flex-none">
         <div className="flex justify-between items-center mb-8">
           <div className="space-y-0.5">
             <h1 className="text-[18px] font-bold tracking-[0.25em] text-[#2D3330] leading-none uppercase">

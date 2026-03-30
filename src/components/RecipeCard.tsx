@@ -6,7 +6,7 @@ interface RecipeCardProps {
     title: string;
     description: string;
     category: string;
-    image_url: string;
+    image_url?: string;
     time: string;
   };
 }

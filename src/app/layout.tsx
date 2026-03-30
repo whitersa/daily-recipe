@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import UpdatePrompt from "@/components/UpdatePrompt";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className={`${inter.className} bg-stone-50 text-stone-900 antialiased min-h-screen`}>
+        <UpdatePrompt />
         <div className="max-w-md mx-auto min-h-screen flex flex-col shadow-xl bg-white">
           {children}
         </div>

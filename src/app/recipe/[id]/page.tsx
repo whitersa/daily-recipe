@@ -21,13 +21,14 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
   const colorClass = COLORS[recipe.id % COLORS.length];
 
   return (
-    <div className="flex-1 flex flex-col pb-32 animate-fade-in bg-[#FDFCFB]">
+    <div className="flex flex-col h-[100dvh] overflow-hidden bg-[#FDFCFB]">
+      <div className="flex-1 overflow-y-auto no-scrollbar">
       {/* Dynamic Earth-Tone Header */}
       <div className={`h-64 w-full ${colorClass} flex items-center justify-center text-7xl shadow-sm relative overflow-hidden`}>
         <div className="relative z-10 opacity-80 drop-shadow-xl">🥘</div>
         <div className="absolute inset-0 bg-black/5"></div>
         {/* Sharp Navigation Actions */}
-        <div className="absolute top-8 left-8 right-8 flex justify-between items-center z-20">
+        <div className="absolute left-8 right-8 flex justify-between items-center z-20" style={{ top: 'calc(2rem + env(safe-area-inset-top, 0px))' }}>
           <Link 
             href="/"
             className="bg-white p-3 rounded-xl shadow-lg text-[#2D3330] hover:bg-black hover:text-white transition-all active:scale-90 border border-black/10"
@@ -107,6 +108,7 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
             ))}
           </div>
         </section>
+      </div>
       </div>
     </div>
   );

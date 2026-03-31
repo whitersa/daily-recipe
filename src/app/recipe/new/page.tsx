@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function NewRecipePage() {
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-[#FDFCFB]">
-      <header className="px-8 pt-16 pb-6 flex flex-col bg-white border-b border-black/5 flex-none">
+    <div className="flex flex-col h-[100dvh] overflow-hidden bg-[#FDFCFB]">
+      <header className="px-8 pt-[calc(2rem+env(safe-area-inset-top))] pb-6 flex flex-col bg-white border-b border-black/5 flex-none">
         <div className="flex justify-between items-center mb-6">
           <Link href="/" className="text-[#2D3330] hover:text-[#5D6B67] transition-all">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path d="M15 19l-7-7 7-7"/></svg>

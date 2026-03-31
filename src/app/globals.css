@@ -3,6 +3,21 @@
 @tailwind utilities;
 
 @layer base {
+  html,
+  body {
+    overflow: hidden;
+    overscroll-behavior: none;
+    height: 100dvh;
+    height: 100vh;
+    /* Prevent pull-to-refresh on mobile */
+    touch-action: pan-x pan-y;
+  }
+
+  html {
+    /* iOS Safari: prevent elastic scrolling on the html element */
+    -webkit-overflow-scrolling: touch;
+  }
+
   body {
     /* Soft Warm White background with high-contrast charcoal text */
     @apply bg-[#FDFCFB] text-[#1A1918] antialiased;

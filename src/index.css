@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    overflow: hidden;
+    overscroll-behavior: none;
+    height: 100dvh;
+    height: 100vh;
+    touch-action: pan-x pan-y;
+  }
+
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    /* Deep Shapeless Apple Base */
+    @apply bg-[#F5F5F7] text-[#1C1C1E] antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* No More Boxy Glass Panels. Only Deep Free-Form Optics. */
+  .bloom-1 { @apply bg-gradient-to-br from-[#0A84FF] to-[#007AFF] opacity-20; }
+  .bloom-2 { @apply bg-gradient-to-br from-[#FF2D55] to-[#FF375F] opacity-20; }
+  .bloom-3 { @apply bg-gradient-to-br from-[#32ADE6] to-[#00C7BE] opacity-20; }
+  .bloom-4 { @apply bg-gradient-to-br from-[#FF9F0A] to-[#FFCC00] opacity-20; }
+  .bloom-5 { @apply bg-gradient-to-br from-[#BF5AF2] to-[#5E5CE6] opacity-20; }
+}

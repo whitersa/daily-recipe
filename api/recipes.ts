@@ -39,16 +39,37 @@ export default async function handler(req: any, res: any) {
   try {
     if (req.method === 'GET') {
       if (!isDBConnected) return res.status(200).json(MOCK_RECIPES);
-      const { rows } = await sql`SELECT * FROM recipes ORDER BY id DESC`;
-      return res.status(200).json(rows);
+      
+      try {
+        const { rows } = await sql`SELECT * FROM recipes ORDER BY id DESC`;
+        return res.status(200).json(rows);
+      } catch (dbError: any) {
+        // 如果是表不存在的错误 (relation "recipes" does not exist)
+        if (dbError.message && dbError.message.includes('recipes')) {
+           console.log('Detecting missing recipes table, initializing...');
+           await sql`
+            CREATE TABLE IF NOT EXISTS recipes (
+              id SERIAL PRIMARY KEY,
+              title TEXT NOT NULL,
+              description TEXT,
+              category TEXT,
+              time TEXT,
+              ingredients TEXT, -- Store as JSON string
+              steps TEXT,       -- Store as JSON string
+              image_url TEXT,
+              created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+            );
+           `;
+           return res.status(200).json(MOCK_RECIPES); // 第一次初始化后返回空或演示数据
+        }
+        throw dbError;
+      }
     }
     
     if (req.method === 'POST') {
       const recipe = req.body;
-      if (!isDBConnected) {
-        // Return mock created ID
-        return res.status(200).json({ id: Date.now() });
-      }
+      if (!isDBConnected) return res.status(200).json({ id: Date.now() });
+      
       const { rows } = await sql`
         INSERT INTO recipes (title, description, category, time, ingredients, steps)
         VALUES (${recipe.title}, ${recipe.description}, ${recipe.category}, ${recipe.time}, ${JSON.stringify(recipe.ingredients)}, ${JSON.stringify(recipe.steps)})
@@ -68,9 +89,11 @@ export default async function handler(req: any, res: any) {
       return res.status(200).json({ success: true });
     }
     
-  } catch (error) {
+  } catch (error: any) {
     console.error('Vercel API Error:', error);
-    if (!isDBConnected) return res.status(200).json(MOCK_RECIPES); // fallback
-    return res.status(500).json({ error: String(error) });
+    return res.status(500).json({ 
+      error: 'Database connection failed',
+      details: error.message 
+    });
   }
 }

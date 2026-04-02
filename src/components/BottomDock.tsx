@@ -13,7 +13,7 @@ export default function BottomDock({ activeTab }: { activeTab: 'home' | 'assets'
       <div className="fixed bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-[#F5F5F7] via-[#F5F5F7]/40 to-transparent z-40 pointer-events-none"></div>
 
       {/* Ultra-sleek Concentrated Floating Island Dock */}
-      <div className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-out">
+      <div className="fixed bottom-[max(0.5rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-out">
         <nav className="flex items-center justify-center gap-6 bg-white/60 backdrop-blur-3xl border border-white/80 shadow-[0_12px_40px_rgba(0,0,0,0.06)] px-6 py-2.5 rounded-[8px] relative">
           
           <Link to="/" className={`transition-all duration-300 px-3 py-1 active:scale-95 outline-none flex items-center justify-center ${getIconClass('home')}`}>

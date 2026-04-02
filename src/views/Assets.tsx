@@ -10,7 +10,7 @@ export default function Assets() {
       transition={{ duration: 0.3 }}
       className="flex flex-col h-[100dvh] overflow-hidden bg-[#F5F5F7]"
     >
-      <header className="px-6 pt-[calc(2.25rem+env(safe-area-inset-top))] pb-0 flex flex-col z-20 flex-none relative">
+      <header className="px-6 pt-[calc(0.75rem+env(safe-area-inset-top))] pb-0 flex flex-col z-20 flex-none relative">
         <div className="mb-1 flex justify-between items-center">
           <div className="w-[46px]"></div> {/* Spacer */}
           <h1 className="text-[17px] font-bold tracking-widest text-[#1C1C1E] text-center w-full">

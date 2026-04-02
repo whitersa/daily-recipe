@@ -19,7 +19,7 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
       className="flex flex-col h-[100dvh] overflow-hidden bg-[#F5F5F7] relative"
     >
       {/* Absolute Header Area floating shapeless - elevated z-index for modals */}
-      <header className="px-6 pt-[calc(2.25rem+env(safe-area-inset-top))] pb-0 flex flex-col z-[60] flex-none relative">
+      <header className="px-6 pt-[calc(0.75rem+env(safe-area-inset-top))] pb-0 flex flex-col z-[60] flex-none relative">
         <div className="mb-2 flex justify-between items-center">
           <h1 className="text-[34px] font-extrabold tracking-tight text-[#1C1C1E] leading-tight">
             每日食谱<span className="text-[#0A84FF]">.</span>

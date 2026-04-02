@@ -20,7 +20,7 @@ export default function Assets() {
         </div>
       </header>
 
-      <main className="flex-1 overflow-y-auto no-scrollbar px-6 pt-2 pb-[220px] space-y-6">
+      <main className="flex-1 overflow-y-auto no-scrollbar px-6 pt-2 pb-[100px] space-y-6">
         <section className="space-y-4">
           <div className="flex items-center gap-2 pl-2">
              <div className="w-6 h-[2px] bg-black/10 rounded-[8px]"></div>

@@ -53,7 +53,7 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
         </div>
       </header>
 
-      <main className="flex-1 overflow-y-auto no-scrollbar px-6 pt-1 pb-[220px] space-y-5">
+      <main className="flex-1 overflow-y-auto no-scrollbar px-6 pt-1 pb-[100px] space-y-5">
         <section className="space-y-6">
           <div className="space-y-4">
             <div className="flex flex-col gap-1.5">

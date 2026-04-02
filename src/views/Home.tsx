@@ -46,7 +46,7 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
         </nav>
       </header>
 
-      <section className="flex-1 overflow-y-auto no-scrollbar px-6 pt-1 pb-[220px] relative z-10">
+      <section className="flex-1 overflow-y-auto no-scrollbar px-6 pt-1 pb-[100px] relative z-10">
         <div className="grid grid-cols-1 gap-2.5">
           {filteredRecipes.length > 0 ? (
             filteredRecipes.map((recipe: Recipe, index: number) => (

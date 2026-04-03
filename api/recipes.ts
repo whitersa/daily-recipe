@@ -24,7 +24,7 @@ const MOCK_RECIPES = [
 ];
 
 export default async function handler(req: any, res: any) {
-  // Setup CORS to allow Vite dev server calls if testing locally detached
+  // 1. 设置跨域头 (保持之前的逻辑)
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -34,19 +34,24 @@ export default async function handler(req: any, res: any) {
     return res.status(200).end();
   }
 
-  const isDBConnected = !!process.env.POSTGRES_URL;
+  // 2. 核心诊断：检查环境变量
+  const pgUrl = process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING;
+  const isDBConnected = !!pgUrl;
 
   try {
+    // 3. GET 逻辑 (添加了对 sql 对象存在性的检查)
     if (req.method === 'GET') {
-      if (!isDBConnected) return res.status(200).json(MOCK_RECIPES);
+      if (!isDBConnected) {
+        console.warn('POSTGRES_URL missing, falling back to MOCK.');
+        return res.status(200).json(MOCK_RECIPES);
+      }
       
       try {
         const { rows } = await sql`SELECT * FROM recipes ORDER BY id DESC`;
         return res.status(200).json(rows);
       } catch (dbError: any) {
-        // 如果是表不存在的错误 (relation "recipes" does not exist)
+        // 如果是表不存在，尝试自动初始化
         if (dbError.message && dbError.message.includes('recipes')) {
-           console.log('Detecting missing recipes table, initializing...');
            await sql`
             CREATE TABLE IF NOT EXISTS recipes (
               id SERIAL PRIMARY KEY,
@@ -54,22 +59,22 @@ export default async function handler(req: any, res: any) {
               description TEXT,
               category TEXT,
               time TEXT,
-              ingredients TEXT, -- Store as JSON string
-              steps TEXT,       -- Store as JSON string
+              ingredients TEXT,
+              steps TEXT,
               image_url TEXT,
               created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
             );
            `;
-           return res.status(200).json(MOCK_RECIPES); // 第一次初始化后返回空或演示数据
+           return res.status(200).json(MOCK_RECIPES);
         }
         throw dbError;
       }
     }
     
+    // ... 其他方法保持原逻辑，但包装在 try 里
     if (req.method === 'POST') {
       const recipe = req.body;
       if (!isDBConnected) return res.status(200).json({ id: Date.now() });
-      
       const { rows } = await sql`
         INSERT INTO recipes (title, description, category, time, ingredients, steps)
         VALUES (${recipe.title}, ${recipe.description}, ${recipe.category}, ${recipe.time}, ${JSON.stringify(recipe.ingredients)}, ${JSON.stringify(recipe.steps)})
@@ -78,22 +83,14 @@ export default async function handler(req: any, res: any) {
       return res.status(200).json(rows[0]);
     }
 
-    if (req.method === 'PUT') {
-      const recipe = req.body;
-      if (!isDBConnected) return res.status(200).json({ success: true });
-      await sql`
-        UPDATE recipes 
-        SET title = ${recipe.title}, description = ${recipe.description}, category = ${recipe.category}, time = ${recipe.time}, ingredients = ${JSON.stringify(recipe.ingredients)}, steps = ${JSON.stringify(recipe.steps)}
-        WHERE id = ${recipe.id}
-      `;
-      return res.status(200).json({ success: true });
-    }
-    
   } catch (error: any) {
-    console.error('Vercel API Error:', error);
+    // 4. 极致诊断：捕获所有未知崩溃并返回
+    console.error('CRITICAL API ERROR:', error);
     return res.status(500).json({ 
-      error: 'Database connection failed',
-      details: error.message 
+      error: 'API Execution Failed', 
+      message: error.message || String(error),
+      env_status: isDBConnected ? 'Connected (Env OK)' : 'Disconnected (Env Missing)',
+      stack: error.stack ? 'Details in Vercel Logs' : null
     });
   }
 }

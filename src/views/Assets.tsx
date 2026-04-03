@@ -50,7 +50,7 @@ export default function Assets() {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-col h-[100dvh] overflow-hidden bg-background"
+      className="flex flex-col h-full overflow-hidden bg-background"
     >
       <header className="px-5 pt-[calc(0.5rem+env(safe-area-inset-top))] pb-3 flex items-center justify-end z-20 flex-none bg-background/40 backdrop-blur-md border-b border-foreground/[0.03]">
         <span className="text-[10px] font-bold text-foreground/20 tracking-widest uppercase">SYMBOLOGY CORE / {assets.length} ITEMS</span>

@@ -9,7 +9,7 @@ export default function Settings() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col h-[100dvh] overflow-hidden bg-background"
+      className="flex flex-col h-full overflow-hidden bg-background"
     >
       <header className="px-6 pt-[calc(0.75rem+env(safe-area-inset-top))] pb-6 flex flex-col z-20 flex-none relative">
         <div className="mb-4 flex flex-col">

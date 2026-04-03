@@ -72,7 +72,7 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-col h-[100dvh] overflow-hidden bg-background"
+      className="flex flex-col h-full overflow-hidden bg-background"
     >
       <header className="px-5 pt-[env(safe-area-inset-top,0px)] pb-1.5 flex items-center justify-between z-20 flex-none bg-background/40 backdrop-blur-md border-b border-foreground/[0.03]">
         <button 

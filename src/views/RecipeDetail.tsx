@@ -57,7 +57,7 @@ export default function RecipeDetail({ recipes }: { recipes: Recipe[] }) {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-col h-[100dvh] overflow-hidden bg-background relative"
+      className="flex flex-col h-full overflow-hidden bg-background relative"
     >
       <div className="absolute top-0 left-0 w-full h-[60vh] overflow-hidden pointer-events-none z-0">
         <div className={`absolute -top-32 -left-20 w-[450px] h-[450px] rounded-[6px] ${color.bloom} blur-[100px] opacity-70`}></div>

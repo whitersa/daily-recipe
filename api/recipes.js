@@ -43,7 +43,7 @@ module.exports = async function handler(req, res) {
       } catch (dbError) {
         // 如果表不存在，自动创建
         if (dbError.message && (dbError.message.includes('recipes') || dbError.message.includes('relation'))) {
-          await sql`CREATE TABLE IF NOT EXISTS recipes (id SERIAL PRIMARY KEY, title TEXT NOT NULL, description TEXT, category TEXT, time TEXT, ingredients TEXT, steps TEXT, image_url TEXT, created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP)`;
+          await sql`CREATE TABLE IF NOT EXISTS recipes (id SERIAL PRIMARY KEY, title TEXT NOT NULL, description TEXT, category TEXT, time TEXT, ingredients TEXT, steps TEXT, tags TEXT, image_url TEXT, created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP)`;
           return res.status(200).json(MOCK_RECIPES);
         }
         throw dbError;
@@ -53,14 +53,14 @@ module.exports = async function handler(req, res) {
     if (req.method === 'POST') {
       const recipe = req.body;
       if (!pgUrl) return res.status(200).json({ id: Date.now() });
-      const { rows } = await sql`INSERT INTO recipes (title, description, category, time, ingredients, steps) VALUES (${recipe.title}, ${recipe.description}, ${recipe.category}, ${recipe.time}, ${JSON.stringify(recipe.ingredients)}, ${JSON.stringify(recipe.steps)}) RETURNING id`;
+      const { rows } = await sql`INSERT INTO recipes (title, description, category, time, ingredients, steps, tags) VALUES (${recipe.title}, ${recipe.description}, ${recipe.category}, ${recipe.time}, ${JSON.stringify(recipe.ingredients)}, ${JSON.stringify(recipe.steps)}, ${JSON.stringify(recipe.tags || [])}) RETURNING id`;
       return res.status(200).json(rows[0]);
     }
 
     if (req.method === 'PUT') {
       const recipe = req.body;
       if (!pgUrl) return res.status(200).json({ success: true });
-      await sql`UPDATE recipes SET title = ${recipe.title}, description = ${recipe.description}, category = ${recipe.category}, time = ${recipe.time}, ingredients = ${JSON.stringify(recipe.ingredients)}, steps = ${JSON.stringify(recipe.steps)} WHERE id = ${recipe.id}`;
+      await sql`UPDATE recipes SET title = ${recipe.title}, description = ${recipe.description}, category = ${recipe.category}, time = ${recipe.time}, ingredients = ${JSON.stringify(recipe.ingredients)}, steps = ${JSON.stringify(recipe.steps)}, tags = ${JSON.stringify(recipe.tags || [])} WHERE id = ${recipe.id}`;
       return res.status(200).json({ success: true });
     }
 

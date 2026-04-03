@@ -32,16 +32,16 @@ export default function RecipeDetail({ recipes }: { recipes: Recipe[] }) {
     >
       {/* Amorphous Background Glow. No Card Headers. */}
       <div className="absolute top-0 left-0 w-full h-[60vh] overflow-hidden pointer-events-none z-0">
-        <div className={`absolute -top-32 -left-20 w-[450px] h-[450px] rounded-[8px] ${color.bloom} blur-[100px] opacity-70`}></div>
-        <div className={`absolute top-20 right-[-100px] w-[300px] h-[300px] rounded-[8px] ${color.bloom} blur-[80px] opacity-40`}></div>
+        <div className={`absolute -top-32 -left-20 w-[450px] h-[450px] rounded-[6px] ${color.bloom} blur-[100px] opacity-70`}></div>
+        <div className={`absolute top-20 right-[-100px] w-[300px] h-[300px] rounded-[6px] ${color.bloom} blur-[80px] opacity-40`}></div>
       </div>
       
       {/* Subtle Ghost Capsules for Top Nav */}
       <div className="absolute top-0 left-0 w-full flex justify-between z-30 px-6 pt-[calc(1.5rem+env(safe-area-inset-top,0px))]">
-         <Link to="/" className="p-3 bg-white/40 backdrop-blur-2xl border border-white/60 shadow-sm rounded-[8px] text-[#1C1C1E] opacity-70 hover:opacity-100 transition-opacity outline-none">
+         <Link to="/" className="p-3 bg-white/40 backdrop-blur-2xl border border-white/60 shadow-sm rounded-[6px] text-[#1C1C1E] opacity-70 hover:opacity-100 transition-opacity outline-none">
            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
          </Link>
-         <Link to={`/recipe/${id}/edit`} className="p-3 bg-white/40 backdrop-blur-2xl border border-white/60 shadow-sm rounded-[8px] text-[#1C1C1E] opacity-70 hover:opacity-100 transition-opacity outline-none">
+         <Link to={`/recipe/${id}/edit`} className="p-3 bg-white/40 backdrop-blur-2xl border border-white/60 shadow-sm rounded-[6px] text-[#1C1C1E] opacity-70 hover:opacity-100 transition-opacity outline-none">
            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
          </Link>
       </div>
@@ -51,11 +51,11 @@ export default function RecipeDetail({ recipes }: { recipes: Recipe[] }) {
          <div className="mb-14">
             <div className="flex items-center gap-3 mb-4 opacity-40">
                <span className="text-[10px] font-bold uppercase tracking-widest">{recipe.category}</span>
-               <span className="w-1 h-1 rounded-[8px] bg-[#1C1C1E]"></span>
+               <span className="w-1 h-1 rounded-[6px] bg-[#1C1C1E]"></span>
                <span className="text-[10px] font-semibold tracking-wider">{recipe.time}</span>
             </div>
             
-            <h1 className="text-[44px] leading-[1.05] font-extrabold tracking-tight text-[#1C1C1E] mb-6 pr-4">
+            <h1 className="text-[44px] leading-[1.05] font-bold tracking-tight text-[#1C1C1E] mb-6 pr-4">
               {recipe.title}
             </h1>
             

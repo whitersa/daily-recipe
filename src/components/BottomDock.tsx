@@ -14,7 +14,7 @@ export default function BottomDock({ activeTab }: { activeTab: 'home' | 'assets'
 
       {/* Ultra-sleek Concentrated Floating Island Dock */}
       <div className="fixed bottom-[max(0.5rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-out">
-        <nav className="flex items-center justify-center gap-6 bg-white/60 backdrop-blur-3xl border border-white/80 shadow-[0_12px_40px_rgba(0,0,0,0.06)] px-6 py-2.5 rounded-[8px] relative">
+        <nav className="flex items-center justify-center gap-6 bg-white/60 backdrop-blur-3xl border border-white/80 shadow-[0_12px_40px_rgba(0,0,0,0.06)] px-6 py-2.5 rounded-[6px] relative">
           
           <Link to="/" className={`transition-all duration-300 px-3 py-1 active:scale-95 outline-none flex items-center justify-center ${getIconClass('home')}`}>
              <svg className="w-[24px] h-[24px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" strokeLinecap="round" strokeLinejoin="round"/><path d="M9 10h6M9 14h6M9 18h4" strokeLinecap="round" strokeLinejoin="round"/></svg>

@@ -55,7 +55,7 @@ export default function UpdatePrompt() {
 
   return (
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[200] w-[90%] max-w-[400px] animate-slide-down">
-      <div className="bg-[#2D3330] text-white rounded-[8px] px-4 py-3.5 flex items-center justify-between gap-3 shadow-[0_20px_60px_rgba(0,0,0,0.3)] border border-white/10">
+      <div className="bg-[#2D3330] text-white rounded-[6px] px-4 py-3.5 flex items-center justify-between gap-3 shadow-[0_20px_60px_rgba(0,0,0,0.3)] border border-white/10">
         <div className="flex items-center gap-3">
           <span className="text-lg">✨</span>
           <div>
@@ -69,7 +69,7 @@ export default function UpdatePrompt() {
         </div>
         <button
           onClick={handleUpdate}
-          className="bg-white text-[#2D3330] px-4 py-2 rounded-[8px] text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-white/90 active:scale-95 transition-all whitespace-nowrap"
+          className="bg-white text-[#2D3330] px-4 py-2 rounded-[6px] text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-white/90 active:scale-95 transition-all whitespace-nowrap"
         >
           立即更新
         </button>

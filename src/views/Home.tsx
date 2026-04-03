@@ -21,7 +21,7 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
       {/* Absolute Header Area floating shapeless - elevated z-index for modals */}
       <header className="px-6 pt-[calc(0.75rem+env(safe-area-inset-top))] pb-0 flex flex-col z-[60] flex-none relative">
         <div className="mb-2 flex justify-between items-center">
-          <h1 className="text-[34px] font-extrabold tracking-tight text-[#1C1C1E] leading-tight">
+          <h1 className="text-[30px] font-bold tracking-tight text-[#1C1C1E] leading-tight">
             每日食谱<span className="text-[#0A84FF]">.</span>
           </h1>
         </div>
@@ -36,7 +36,7 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
               to={`/?cat=${cat}`}
               className={`flex-none text-[14px] tracking-wide transition-all duration-300 outline-none ${
                 cat === selectedCat 
-                ? 'text-[#1C1C1E] font-extrabold' 
+                ? 'text-[#1C1C1E] font-bold' 
                 : 'text-black/40 font-semibold hover:text-[#1C1C1E] hover:opacity-70'
               }`}
             >

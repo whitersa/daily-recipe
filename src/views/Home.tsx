@@ -19,8 +19,8 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
       className="flex flex-col h-[100dvh] overflow-hidden bg-[#F5F5F7] relative"
     >
       {/* Absolute Header Area floating shapeless - elevated z-index for modals */}
-      <header className="px-6 pt-[calc(0.5rem+env(safe-area-inset-top))] pb-0 flex flex-col z-[60] flex-none relative">
-        <div className="pt-2">
+      <header className="px-6 pt-[env(safe-area-inset-top,0px)] pb-0 flex flex-col z-[60] flex-none relative">
+        <div className="pt-1.5">
           <SearchHeader />
         </div>
         
@@ -45,8 +45,8 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
         </nav>
       </header>
 
-      <section className="flex-1 overflow-y-auto no-scrollbar px-6 pt-1 pb-[100px] relative z-10">
-        <div className="grid grid-cols-1 gap-2.5">
+      <section className="flex-1 overflow-y-auto no-scrollbar px-6 pt-0 pb-[80px] relative z-10">
+        <div className="grid grid-cols-2 gap-3">
           {filteredRecipes.length > 0 ? (
             filteredRecipes.map((recipe: Recipe, index: number) => (
               <div key={recipe.id} className="animate-fade-in" style={{ animationDelay: `${index * 0.04}s` }}>

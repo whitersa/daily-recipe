@@ -81,7 +81,7 @@ export default function EditRecipe({ recipes, onRefresh }: { recipes: Recipe[], 
       animate={{ opacity: 1 }}
       className="flex flex-col h-[100dvh] overflow-hidden bg-[#F5F5F7]"
     >
-      <header className="px-5 pt-[calc(0.5rem+env(safe-area-inset-top))] pb-3 flex items-center justify-between z-20 flex-none bg-white/40 backdrop-blur-md border-b border-black/[0.03]">
+      <header className="px-5 pt-[env(safe-area-inset-top,0px)] pb-1.5 flex items-center justify-between z-20 flex-none bg-white/40 backdrop-blur-md border-b border-black/[0.03]">
         <Link to={`/recipe/${id}`} className="p-1 text-black/40 hover:text-black transition-colors">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </Link>

@@ -63,7 +63,7 @@ export default function RecipeDetail({ recipes }: { recipes: Recipe[] }) {
         <div className={`absolute -top-32 -left-20 w-[450px] h-[450px] rounded-[6px] ${color.bloom} blur-[100px] opacity-70`}></div>
       </div>
       
-      <div className="absolute top-0 left-0 w-full flex justify-between z-30 px-6 pt-[calc(1.5rem+env(safe-area-inset-top,0px))]">
+      <div className="absolute top-0 left-0 w-full flex justify-between z-30 px-6 pt-[env(safe-area-inset-top,0.5rem)]">
          <Link to="/" className="p-3 bg-white/40 backdrop-blur-2xl border border-white/60 shadow-sm rounded-[6px] text-[#1C1C1E] opacity-70 hover:opacity-100 transition-opacity">
            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3"><path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round"/></svg>
          </Link>

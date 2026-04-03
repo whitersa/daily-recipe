@@ -41,8 +41,8 @@ export default function SearchHeader() {
             </button>
           </DrawerTrigger>
           <DrawerContent className="bg-white/80 backdrop-blur-2xl rounded-t-[32px] border-none shadow-2xl">
-            <div className="px-8 space-y-7 overflow-y-auto no-scrollbar pb-10">
-              <div className="grid gap-7 pt-2">
+            <div className="px-8 space-y-5 overflow-y-auto no-scrollbar pb-8">
+              <div className="grid gap-5 pt-1">
                 {/* Time Selection */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-black/40">

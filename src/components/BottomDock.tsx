@@ -10,7 +10,7 @@ export default function BottomDock({ activeTab }: { activeTab: 'home' | 'assets'
   return (
     <>
       {/* Dynamic Navigation Bar - Native Mobile Style */}
-      <div className="fixed bottom-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl border-t border-black/[0.04] shadow-[0_-8px_20px_rgba(0,0,0,0.02)] pt-3 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+      <div className="fixed bottom-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl border-t border-black/[0.04] shadow-[0_-8px_20px_rgba(0,0,0,0.02)] pt-2.5 pb-[calc(0.65rem+env(safe-area-inset-bottom,0px))]">
         <nav className="flex items-center justify-around px-2">
           
           <Link to="/" className={`flex flex-col items-center gap-1.5 transition-all duration-300 outline-none ${getTabClass('home')}`}>

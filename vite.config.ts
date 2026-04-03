@@ -24,15 +24,6 @@ export default defineConfig({
       }
     })
   ],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000', // Vercel Dev Server
-        changeOrigin: true,
-        rewrite: (path) => path
-      }
-    }
-  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')

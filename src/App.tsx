@@ -13,6 +13,7 @@ const MOCK_RECIPES: any[] = [
   {
     id: 1,
     title: '番茄牛腩面',
+    emoji: '🍜',
     description: '浓郁酸甜的番茄汤底，搭配筋道的牛腩。',
     category: '午餐',
     time: '45 min',
@@ -28,6 +29,7 @@ const MOCK_RECIPES: any[] = [
   {
     id: 2,
     title: '牛油果吐司',
+    emoji: '🥑',
     description: '健康的油脂，开启活力满满的一天。',
     category: '早餐',
     time: '10 min',
@@ -54,6 +56,7 @@ export interface StepGroup {
 export interface Recipe {
   id: number;
   title: string;
+  emoji?: string; // New Icon support
   description: string;
   category: string;
   time: string;

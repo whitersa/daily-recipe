@@ -8,6 +8,7 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
+  const [emoji, setEmoji] = useState("🥘"); // Default Emoji
   const [category, setCategory] = useState("早餐");
   const [description, setDescription] = useState("");
   const [time, setTime] = useState("");
@@ -39,7 +40,7 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          title, description, category, time, tags,
+          title, emoji, description, category, time, tags,
           ingredients: ingredientGroups.map(g => ({ ...g, items: g.items.filter(i => i.trim()) })),
           steps: stepGroups.map(g => ({ ...g, items: g.items.filter(i => i.trim()) }))
         })
@@ -85,32 +86,49 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
       </header>
 
       <main className="flex-1 overflow-y-auto no-scrollbar px-5 py-4 space-y-8 pb-[120px]">
-        <section className="space-y-3">
-          <input 
-            type="text" 
-            value={title}
-            placeholder="赋予此档案一个名称..."
-            onChange={e => setTitle(e.target.value)}
-            className="w-full bg-transparent text-[20px] font-bold text-[#1C1C1E] outline-none placeholder:text-black/10"
-          />
-          <div className="grid grid-cols-2 gap-2">
-            <select 
-              value={category}
-              onChange={e => setCategory(e.target.value)}
-              className="w-full bg-white border border-black/[0.05] rounded-[4px] px-3 py-1.5 text-[12px] font-bold outline-none"
-            >
-              {['早餐', '午餐', '晚餐', '甜点', '轻食'].map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
-              ))}
-            </select>
-            <input 
-              type="text" 
-              value={time}
-              placeholder="耗时 (20min)..."
-              onChange={e => setTime(e.target.value)}
-              className="w-full bg-white border border-black/[0.05] rounded-[4px] px-3 py-1.5 text-[12px] font-bold outline-none"
-            />
+        <section className="space-y-4">
+          <div className="flex gap-4 items-start">
+             {/* Dynamic Emoji Input Square */}
+             <div className="flex-none">
+                <input 
+                  type="text" 
+                  value={emoji}
+                  maxLength={2}
+                  onChange={e => setEmoji(e.target.value)}
+                  className="w-16 h-16 bg-white border border-black/[0.05] rounded-[10px] text-center text-[32px] outline-none shadow-sm focus:border-[#0A84FF] transition-all"
+                />
+                <span className="block text-[8px] font-bold text-center mt-1 text-black/10 tracking-tighter uppercase">ARCHIVE ICON</span>
+             </div>
+             
+             <div className="flex-1 space-y-2">
+                <input 
+                  type="text" 
+                  value={title}
+                  placeholder="命名此食谱档案..."
+                  onChange={e => setTitle(e.target.value)}
+                  className="w-full bg-transparent text-[22px] font-bold text-[#1C1C1E] outline-none placeholder:text-black/10"
+                />
+                <div className="grid grid-cols-2 gap-2">
+                  <select 
+                    value={category}
+                    onChange={e => setCategory(e.target.value)}
+                    className="w-full bg-white border border-black/[0.05] rounded-[4px] px-2 py-1.5 text-[12px] font-bold outline-none"
+                  >
+                    {['早餐', '午餐', '晚餐', '甜点', '轻食'].map(cat => (
+                      <option key={cat} value={cat}>{cat}</option>
+                    ))}
+                  </select>
+                  <input 
+                    type="text" 
+                    value={time}
+                    placeholder="20min"
+                    onChange={e => setTime(e.target.value)}
+                    className="w-full bg-white border border-black/[0.05] rounded-[4px] px-2 py-1.5 text-[12px] font-bold outline-none"
+                  />
+                </div>
+             </div>
           </div>
+
           <div className="flex flex-wrap gap-1.5 py-1">
             {['低脂', '高蛋白', '快手', '家常', '硬菜', '创意'].map(tag => (
               <button 
@@ -140,20 +158,7 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
                   }}
                   className="text-[11px] font-bold tracking-widest text-blue-500/60 uppercase bg-transparent outline-none w-[40%]"
                 />
-                <div className="flex gap-1 overflow-x-auto no-scrollbar max-w-[50%]">
-                   {assets.filter(a => a.type === 'ingredient').slice(0, 4).map(asset => (
-                     <button key={asset.id} onClick={() => {
-                       const next = [...ingredientGroups];
-                       const items = next[gIdx].items;
-                       items[items.length - 1] = (items[items.length - 1] + " " + asset.name).trim();
-                       setIngredientGroups(next);
-                     }} className="whitespace-nowrap px-1.5 py-0.5 bg-blue-500/5 text-blue-500/40 rounded-[2px] text-[8px] font-bold">
-                       + {asset.name}
-                     </button>
-                   ))}
-                </div>
               </div>
-              
               <div className="space-y-1.5">
                 {group.items.map((item, iIdx) => (
                   <input 
@@ -181,12 +186,7 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
               </div>
             </section>
           ))}
-          <button 
-            onClick={() => addGroup('ing')}
-            className="w-full border border-dashed border-black/5 rounded-[4px] py-2 text-[10px] font-bold text-black/20 tracking-widest hover:border-black/10 hover:text-black/40 transition-all"
-          >
-            + ADD INGREDIENT GROUP
-          </button>
+          <button onClick={() => addGroup('ing')} className="w-full border border-dashed border-black/5 rounded-[4px] py-1.5 text-[10px] font-bold text-black/20 tracking-widest uppercase">+ ADD GROUP</button>
         </div>
 
         {/* --- STEPS GROUPS --- */}
@@ -232,12 +232,7 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
               </div>
             </section>
           ))}
-          <button 
-            onClick={() => addGroup('step')}
-            className="w-full border border-dashed border-black/5 rounded-[4px] py-2 text-[10px] font-bold text-black/20 tracking-widest hover:border-black/10 hover:text-black/40 transition-all"
-          >
-            + ADD PROCESS GROUP
-          </button>
+          <button onClick={() => addGroup('step')} className="w-full border border-dashed border-black/5 rounded-[4px] py-1.5 text-[10px] font-bold text-black/20 tracking-widest uppercase">+ ADD GROUP</button>
         </div>
       </main>
 

@@ -71,7 +71,7 @@ export default function EditRecipe({ recipes, onRefresh }: { recipes: Recipe[], 
                 type="text" 
                 value={title}
                 onChange={e => setTitle(e.target.value)}
-                className="w-full bg-white border border-black/5 rounded-[8px] px-4 py-3.5 text-[15px] text-[#1C1C1E] font-bold focus:border-[#1C1C1E] transition-all outline-none shadow-sm"
+                className="w-full bg-white border border-black/5 rounded-[8px] px-4 py-3.5 text-[16px] text-[#1C1C1E] font-bold focus:border-[#1C1C1E] transition-all outline-none shadow-sm"
               />
             </div>
             
@@ -80,7 +80,7 @@ export default function EditRecipe({ recipes, onRefresh }: { recipes: Recipe[], 
               <select 
                 value={category}
                 onChange={e => setCategory(e.target.value)}
-                className="w-full bg-white border border-black/5 rounded-[8px] px-4 py-3.5 text-[14px] text-[#1C1C1E] font-bold focus:border-[#1C1C1E] transition-all outline-none shadow-sm"
+                className="w-full bg-white border border-black/5 rounded-[8px] px-4 py-3.5 text-[16px] text-[#1C1C1E] font-bold focus:border-[#1C1C1E] transition-all outline-none shadow-sm"
               >
                 {['早餐', '午餐', '晚餐', '甜点', '轻食'].map(cat => (
                   <option key={cat} value={cat}>{cat}</option>
@@ -94,7 +94,7 @@ export default function EditRecipe({ recipes, onRefresh }: { recipes: Recipe[], 
                 value={description}
                 onChange={e => setDescription(e.target.value)}
                 rows={4}
-                className="w-full bg-white border border-black/5 rounded-[8px] px-4 py-3.5 text-[14px] text-[#1C1C1E] font-medium focus:border-[#1C1C1E] transition-all outline-none resize-none shadow-sm"
+                className="w-full bg-white border border-black/5 rounded-[8px] px-4 py-3.5 text-[16px] text-[#1C1C1E] font-medium focus:border-[#1C1C1E] transition-all outline-none resize-none shadow-sm"
               />
             </div>
             
@@ -104,7 +104,7 @@ export default function EditRecipe({ recipes, onRefresh }: { recipes: Recipe[], 
                 type="text" 
                 value={time}
                 onChange={e => setTime(e.target.value)}
-                className="w-full bg-white border border-black/5 rounded-[8px] px-4 py-3.5 text-[15px] text-[#1C1C1E] font-bold focus:border-[#1C1C1E] transition-all outline-none shadow-sm"
+                className="w-full bg-white border border-black/5 rounded-[8px] px-4 py-3.5 text-[16px] text-[#1C1C1E] font-bold focus:border-[#1C1C1E] transition-all outline-none shadow-sm"
               />
             </div>
           </div>
@@ -121,7 +121,7 @@ export default function EditRecipe({ recipes, onRefresh }: { recipes: Recipe[], 
                 <input 
                   type="text" 
                   defaultValue={ing}
-                  className="flex-1 bg-white border border-black/5 rounded-[8px] px-4 py-3 text-[14px] text-[#1C1C1E] font-medium focus:border-[#1C1C1E] transition-all outline-none shadow-sm"
+                  className="flex-1 bg-white border border-black/5 rounded-[8px] px-4 py-3 text-[16px] text-[#1C1C1E] font-medium focus:border-[#1C1C1E] transition-all outline-none shadow-sm"
                 />
               </div>
             ))}

@@ -63,7 +63,7 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
                 value={title}
                 onChange={e => setTitle(e.target.value)}
                 placeholder="例如：深夜热汤面..."
-                className="w-full bg-white border border-white/80 rounded-[8px] px-4 py-3.5 text-[15px] text-[#1C1C1E] font-bold focus:shadow-[0_4px_24px_rgba(0,0,0,0.04)] focus:scale-[1.01] transition-all outline-none shadow-sm"
+                className="w-full bg-white border border-white/80 rounded-[8px] px-4 py-3.5 text-[16px] text-[#1C1C1E] font-bold focus:shadow-[0_4px_24px_rgba(0,0,0,0.04)] focus:scale-[1.01] transition-all outline-none shadow-sm"
               />
             </div>
             
@@ -72,7 +72,7 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
               <select 
                 value={category}
                 onChange={e => setCategory(e.target.value)}
-                className="w-full bg-white border border-white/80 rounded-[8px] px-4 py-3.5 text-[14px] text-[#1C1C1E] font-bold focus:shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all outline-none shadow-sm appearance-none"
+                className="w-full bg-white border border-white/80 rounded-[8px] px-4 py-3.5 text-[16px] text-[#1C1C1E] font-bold focus:shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all outline-none shadow-sm appearance-none"
               >
                 {['早餐', '午餐', '晚餐', '甜点', '轻食'].map(cat => (
                   <option key={cat} value={cat}>{cat}</option>
@@ -87,7 +87,7 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
                 onChange={e => setDescription(e.target.value)}
                 placeholder="描述一下这道菜的特点..."
                 rows={4}
-                className="w-full bg-white border border-white/80 rounded-[8px] px-4 py-3.5 text-[14px] text-[#1C1C1E] font-medium focus:shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all outline-none resize-none shadow-sm"
+                className="w-full bg-white border border-white/80 rounded-[8px] px-4 py-3.5 text-[16px] text-[#1C1C1E] font-medium focus:shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all outline-none resize-none shadow-sm"
               />
             </div>
           </div>
@@ -104,13 +104,13 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
               value={time}
               onChange={e => setTime(e.target.value)}
               placeholder="预计消耗时长，例如：20 分钟..."
-              className="w-full bg-white border border-white/80 rounded-[8px] px-4 py-3.5 text-[14px] text-[#1C1C1E] font-bold focus:shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all outline-none shadow-sm"
+              className="w-full bg-white border border-white/80 rounded-[8px] px-4 py-3.5 text-[16px] text-[#1C1C1E] font-bold focus:shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all outline-none shadow-sm"
             />
           </div>
         </section>
 
         <section className="pt-6">
-          <motion.button whileTap={{ scale: 0.96 }} onClick={handleSave} disabled={loading || !title} className="w-full bg-[#1C1C1E] text-white py-4 rounded-[8px] text-[14px] font-bold tracking-widest shadow-[0_8px_20px_rgba(0,0,0,0.15)] disabled:opacity-50 transition-all">
+          <motion.button whileTap={{ scale: 0.96 }} onClick={handleSave} disabled={loading || !title} className="w-full bg-[#1C1C1E] text-white py-4 rounded-[8px] text-[16px] font-bold tracking-widest shadow-[0_8px_20px_rgba(0,0,0,0.15)] disabled:opacity-50 transition-all">
             {loading ? '正在初始化...' : '创建档案系统'}
           </motion.button>
         </section>

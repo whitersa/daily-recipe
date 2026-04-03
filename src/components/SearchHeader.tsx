@@ -13,7 +13,7 @@ export default function SearchHeader() {
           <input 
             type="text" 
             placeholder="搜索食谱档案..."
-            className="w-full h-full bg-white/70 backdrop-blur-xl border border-white/80 rounded-[8px] px-11 text-[13px] font-bold text-[#1C1C1E] focus:shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus:bg-white transition-all outline-none placeholder:text-black/30 placeholder:tracking-widest"
+            className="w-full h-full bg-white/70 backdrop-blur-xl border border-white/80 rounded-[8px] px-11 text-[16px] font-bold text-[#1C1C1E] focus:shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus:bg-white transition-all outline-none placeholder:text-black/30 placeholder:tracking-widest appearance-none"
           />
           <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
             <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>

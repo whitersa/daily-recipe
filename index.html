@@ -22,12 +22,14 @@
         -webkit-tap-highlight-color: transparent;
         text-rendering: optimizeLegibility;
       }
-      /* Prevent overscroll bounce on body */
+      /* Prevent overscroll bounce on body but keep it stable for iOS */
       html, body {
-        position: fixed;
         width: 100%;
         height: 100%;
+        margin: 0;
+        padding: 0;
         overflow: hidden;
+        overscroll-behavior: none;
       }
       #root {
         height: 100%;

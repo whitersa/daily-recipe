@@ -74,12 +74,11 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
       animate={{ opacity: 1 }}
       className="flex flex-col h-[100dvh] overflow-hidden bg-[#F5F5F7]"
     >
-      <header className="px-5 pt-[calc(0.5rem+env(safe-area-inset-top))] pb-3 flex items-center justify-between z-20 flex-none bg-white/40 backdrop-blur-md border-b border-black/[0.03]">
-        <h1 className="text-[17px] font-bold tracking-tight text-[#1C1C1E]">新建档案.</h1>
+      <header className="px-5 pt-[calc(0.5rem+env(safe-area-inset-top))] pb-3 flex items-center justify-end z-20 flex-none bg-white/40 backdrop-blur-md border-b border-black/[0.03]">
         <button 
           onClick={handleSave} 
           disabled={loading || !title} 
-          className="text-[13px] font-bold text-[#0A84FF] disabled:opacity-30 tracking-widest bg-blue-500/5 px-4 py-1.5 rounded-full"
+          className="text-[14px] font-bold text-[#0A84FF] disabled:opacity-30 tracking-widest bg-blue-500/5 px-6 py-2 rounded-full"
         >
           {loading ? '...' : 'COMMIT'}
         </button>

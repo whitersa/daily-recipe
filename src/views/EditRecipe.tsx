@@ -82,13 +82,10 @@ export default function EditRecipe({ recipes, onRefresh }: { recipes: Recipe[], 
       className="flex flex-col h-[100dvh] overflow-hidden bg-[#F5F5F7]"
     >
       <header className="px-5 pt-[calc(0.5rem+env(safe-area-inset-top))] pb-3 flex items-center justify-between z-20 flex-none bg-white/40 backdrop-blur-md border-b border-black/[0.03]">
-        <div className="flex items-center gap-3">
-          <Link to={`/recipe/${id}`} className="p-1 text-black/40 hover:text-black">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3"><path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </Link>
-          <h1 className="text-[17px] font-bold tracking-tight text-[#1C1C1E]">编辑档案.</h1>
-        </div>
-        <button onClick={handleUpdate} disabled={loading || !title} className="text-[13px] font-bold text-[#0A84FF] disabled:opacity-30 tracking-widest bg-blue-500/5 px-4 py-1.5 rounded-full">
+        <Link to={`/recipe/${id}`} className="p-1 text-black/40 hover:text-black transition-colors">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </Link>
+        <button onClick={handleUpdate} disabled={loading || !title} className="text-[14px] font-bold text-[#0A84FF] disabled:opacity-30 tracking-widest bg-blue-500/5 px-6 py-2 rounded-full">
           {loading ? '...' : 'SAVE'}
         </button>
       </header>

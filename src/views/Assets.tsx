@@ -52,9 +52,8 @@ export default function Assets() {
       animate={{ opacity: 1 }}
       className="flex flex-col h-[100dvh] overflow-hidden bg-[#F5F5F7]"
     >
-      <header className="px-5 pt-[calc(0.5rem+env(safe-area-inset-top))] pb-3 flex items-center justify-between z-20 flex-none bg-white/40 backdrop-blur-md border-b border-black/[0.03]">
-        <h1 className="text-[17px] font-bold tracking-tight text-[#1C1C1E]">标准资产.</h1>
-        <span className="text-[10px] font-bold text-black/20 tracking-widest">TOTAL / {assets.length}</span>
+      <header className="px-5 pt-[calc(0.5rem+env(safe-area-inset-top))] pb-3 flex items-center justify-end z-20 flex-none bg-white/40 backdrop-blur-md border-b border-black/[0.03]">
+        <span className="text-[10px] font-bold text-black/10 tracking-widest uppercase">SYMBOLOGY CORE / {assets.length} ITEMS</span>
       </header>
 
       <main className="flex-1 overflow-y-auto no-scrollbar px-5 py-4 space-y-8 pb-32">

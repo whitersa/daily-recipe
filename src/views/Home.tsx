@@ -16,10 +16,10 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.35 }}
-      className="flex flex-col h-full overflow-hidden bg-background relative"
+      className="flex flex-col absolute inset-0 overflow-hidden bg-background"
     >
       {/* Absolute Header Area floating shapeless - elevated z-index for modals */}
-      <header className="px-6 pt-[env(safe-area-inset-top,0px)] pb-0 flex flex-col z-[60] flex-none relative">
+      <header className="px-6 pt-[env(safe-area-inset-top,0px)] mt-2 pb-2 flex flex-col z-[60] flex-none relative">
         <div className="pt-1.5">
           <SearchHeader />
         </div>
@@ -45,7 +45,7 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
         </nav>
       </header>
 
-      <section className="flex-1 overflow-y-auto no-scrollbar px-6 pt-0 pb-[80px] relative z-10">
+      <section className="flex-1 overflow-y-auto no-scrollbar px-6 pt-0 pb-[120px] relative z-10">
         <div className="grid grid-cols-2 gap-3">
           {filteredRecipes.length > 0 ? (
             filteredRecipes.map((recipe: Recipe, index: number) => (

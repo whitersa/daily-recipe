@@ -9,9 +9,9 @@ export default function Settings() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col h-full overflow-hidden bg-background"
+      className="flex flex-col absolute inset-0 overflow-hidden bg-background"
     >
-      <header className="px-6 pt-[calc(0.75rem+env(safe-area-inset-top))] pb-6 flex flex-col z-20 flex-none relative">
+      <header className="px-6 pt-[env(safe-area-inset-top,0px)] mt-2 pb-2 flex flex-col z-20 flex-none relative">
         <div className="mb-4 flex flex-col">
           <h1 className="text-[30px] font-bold tracking-tight text-foreground leading-tight">
             系统设置<span className="text-primary">.</span>
@@ -19,7 +19,7 @@ export default function Settings() {
         </div>
       </header>
 
-      <main className="flex-1 overflow-y-auto no-scrollbar px-6 py-6 space-y-6 pb-[100px]">
+      <main className="flex-1 overflow-y-auto no-scrollbar px-6 py-4 space-y-6 pb-[120px]">
         <section className="space-y-4">
           <div className="flex items-center gap-2 pl-2">
              <div className="w-6 h-[2px] bg-foreground/10 rounded-[6px]"></div>

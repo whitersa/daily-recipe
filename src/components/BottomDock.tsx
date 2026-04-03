@@ -4,15 +4,15 @@ export default function BottomDock({ activeTab }: { activeTab: 'home' | 'assets'
   const getTabClass = (tab: string) => {
     return activeTab === tab 
       ? "text-primary font-bold transition-all duration-500 scale-110" 
-      : "text-foreground/25 hover:text-foreground/50 transition-all duration-300";
+      : "text-foreground/25 hover:text-foreground/45 transition-all duration-500";
   };
 
   return (
     <>
       {/* Dynamic Navigation Bar - Native Mobile Style */}
       <div 
-        className="fixed bottom-0 left-0 w-full z-50 bg-background/90 backdrop-blur-xl border-t border-foreground/[0.04] shadow-[0_-8px_20px_rgba(225,82,61,0.02)] pt-2"
-        style={{ paddingBottom: 'max(12px, env(safe-area-inset-bottom))' }}
+        className="fixed bottom-0 left-0 w-full z-50 bg-background/95 backdrop-blur-2xl border-t border-foreground/[0.05] shadow-[0_-10px_30px_rgba(225,82,61,0.03)] pt-2.5"
+        style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 0.5rem)' }}
       >
         <nav className="flex items-center justify-around px-2">
           

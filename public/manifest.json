@@ -1,23 +1,17 @@
 {
-  "name": "Daily Recipe",
-  "short_name": "Recipe",
-  "description": "Premium minimalist offline recipe companion.",
+  "name": "每日食谱",
+  "short_name": "每日",
+  "description": "极简、离线、私密的烹饪伴侣。",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF",
+  "background_color": "#FFFBF5",
+  "theme_color": "#FFFBF5",
   "icons": [
     {
-      "src": "/icons/icon-192x192.png?v=2",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/icons/icon-512x512.png?v=2",
+      "src": "/icon.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any maskable"
     }
   ]
 }

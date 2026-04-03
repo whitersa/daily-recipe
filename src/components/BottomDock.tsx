@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 export default function BottomDock({ activeTab }: { activeTab: 'home' | 'assets' | 'compose' | 'settings' }) {
   const getTabClass = (tab: string) => {
     return activeTab === tab 
-      ? "text-[#1C1C1E] font-bold" 
-      : "text-black/30 hover:text-black/60";
+      ? "text-primary font-bold transition-all duration-500 scale-110" 
+      : "text-foreground/25 hover:text-foreground/50 transition-all duration-300";
   };
 
   return (
     <>
       {/* Dynamic Navigation Bar - Native Mobile Style */}
-      <div className="fixed bottom-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl border-t border-black/[0.04] shadow-[0_-8px_20px_rgba(0,0,0,0.02)] pt-1.5 pb-[env(safe-area-inset-bottom,0px)]">
+      <div 
+        className="fixed bottom-0 left-0 w-full z-50 bg-background/90 backdrop-blur-xl border-t border-foreground/[0.04] shadow-[0_-8px_20px_rgba(225,82,61,0.02)] pt-2"
+        style={{ paddingBottom: 'max(12px, env(safe-area-inset-bottom))' }}
+      >
         <nav className="flex items-center justify-around px-2">
           
           <Link to="/" className={`flex flex-col items-center gap-1.5 transition-all duration-300 outline-none ${getTabClass('home')}`}>

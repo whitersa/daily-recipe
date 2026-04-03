@@ -16,7 +16,7 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.35 }}
-      className="flex flex-col h-[100dvh] overflow-hidden bg-[#F5F5F7] relative"
+      className="flex flex-col h-[100dvh] overflow-hidden bg-background relative"
     >
       {/* Absolute Header Area floating shapeless - elevated z-index for modals */}
       <header className="px-6 pt-[env(safe-area-inset-top,0px)] pb-0 flex flex-col z-[60] flex-none relative">
@@ -32,13 +32,13 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
               <Link
                 key={cat}
                 to={`/?cat=${cat}`}
-                className={`flex-none flex items-center justify-center px-3.5 py-1.5 rounded-[4px] text-[11.5px] font-bold transition-all duration-300 outline-none ${
+                className={`flex-none flex items-center justify-center px-3.5 py-1.5 rounded-[4px] text-[11px] font-bold transition-all duration-300 outline-none ${
                     isActive 
-                    ? 'bg-[#1C1C1E] text-white shadow-sm' 
-                    : 'bg-white border border-black/[0.03] text-black/40 hover:text-black/60 hover:bg-black/[0.01]'
+                    ? 'bg-primary text-white shadow-[0_4px_12px_rgba(225,82,61,0.2)]' 
+                    : 'bg-white/80 border border-black/[0.03] text-black/30 hover:text-primary/60 hover:bg-white'
                   }`}
               >
-                <span className="-translate-y-[0.5px]">{cat}</span>
+                <span className="-translate-y-[0.5px] tracking-tight">{cat}</span>
               </Link>
             );
           })}
@@ -56,7 +56,7 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
           ) : (
             <div className="py-24 text-center mt-4">
               <span className="text-4xl opacity-20 grayscale">📦</span>
-              <p className="text-black/40 text-[13px] font-semibold mt-4">未找到相关的食谱档案。</p>
+              <p className="text-foreground/40 text-[13px] font-semibold mt-4">未找到相关的食谱档案。</p>
             </div>
           )}
         </div>

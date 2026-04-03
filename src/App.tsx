@@ -12,7 +12,7 @@ import { AnimatePresence } from 'framer-motion';
 const MOCK_RECIPES = [
   {
     id: 1,
-    title: '番茄牛腩面',
+    title: '番茄牛腩面1',
     description: '浓郁酸甜的番茄汤底，搭配筋道的牛腩，是冬日里最温暖的选择。',
     category: '午餐',
     time: '45 min',

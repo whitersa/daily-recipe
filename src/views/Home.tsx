@@ -16,7 +16,7 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.35 }}
-      className="flex flex-col absolute inset-0 overflow-hidden bg-background"
+      className="flex flex-col h-[100vh] w-full relative overflow-hidden bg-background"
     >
       {/* Absolute Header Area floating shapeless - elevated z-index for modals */}
       <header className="px-6 pt-[env(safe-area-inset-top,0px)] mt-2 pb-2 flex flex-col z-[60] flex-none relative">

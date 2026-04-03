@@ -79,7 +79,7 @@ export default function EditRecipe({ recipes, onRefresh }: { recipes: Recipe[], 
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-col absolute inset-0 overflow-hidden bg-background"
+      className="flex flex-col h-[100vh] w-full relative overflow-hidden bg-background"
     >
       <header className="px-5 pt-[env(safe-area-inset-top,0px)] mt-2 pb-2 flex items-center justify-between z-20 flex-none bg-background/40 backdrop-blur-md border-b border-foreground/[0.03]">
         <Link to={`/recipe/${id}`} className="p-1 text-foreground/40 hover:text-foreground transition-colors">

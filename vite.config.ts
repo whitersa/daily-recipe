@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'prompt', // We will manage prompts ourselves to keep your beautiful UI
+      registerType: 'autoUpdate', 
       devOptions: { enabled: false },
       manifest: {
         name: "Daily Recipe",

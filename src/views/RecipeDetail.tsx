@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Recipe, IngredientGroup, StepGroup } from "@/App";
+import { Recipe, IngredientGroup, StepGroup } from "@/lib/mocks";
 
 interface Asset {
   id: number;

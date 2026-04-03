@@ -1,4 +1,3 @@
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 @tailwind base;
@@ -23,7 +22,7 @@
   body {
     /* Deep Shapeless Apple Base */
     @apply antialiased bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: 'Geist Variable', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
   .theme {
     --font-heading: var(--font-sans);

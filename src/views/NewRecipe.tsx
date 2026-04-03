@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import BottomDock from "@/components/BottomDock";
-import { IngredientGroup, StepGroup } from "@/App";
+import { IngredientGroup, StepGroup } from "@/lib/mocks";
 
 export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
   const navigate = useNavigate();

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import RecipeCard from "@/components/RecipeCard";
 import SearchHeader from "@/components/SearchHeader";
 import BottomDock from "@/components/BottomDock";
-import { Recipe } from "@/App";
+import { Recipe } from "@/lib/mocks";
 
 export default function Home({ recipes }: { recipes: Recipe[] }) {
   const [searchParams] = useSearchParams();

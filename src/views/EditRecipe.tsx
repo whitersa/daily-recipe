@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Recipe, IngredientGroup, StepGroup } from "@/App";
+import { Recipe, IngredientGroup, StepGroup } from "@/lib/mocks";
 
 export default function EditRecipe({ recipes, onRefresh }: { recipes: Recipe[], onRefresh: () => void }) {
   const { id } = useParams();

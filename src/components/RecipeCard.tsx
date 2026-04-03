@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Badge } from "@/components/ui/badge";
 
 interface RecipeCardProps {
   recipe: {
@@ -18,33 +19,25 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
   // Determine if it's "Hot" or "Cold" based on category
   const isHot = ['午餐', '晚餐', '硬菜'].includes(recipe.category);
   
-  // Appetite-Driven 'Sun-Dried & Honey' Palette
-  const theme = isHot 
-    ? { 
-        accentColor: 'text-[#E1523D]', 
-        indicatorColor: 'bg-[#E1523D]/[0.06]',
-        tagBg: 'bg-[#E1523D]/[0.03]'
-      }
-    : { 
-        accentColor: 'text-[#FFB800]', 
-        indicatorColor: 'bg-[#FFB800]/[0.1]',
-        tagBg: 'bg-[#FFB800]/[0.05]'
-      };
-
   return (
     <Link to={`/recipe/${recipe.id}`} className="block h-full">
       <motion.div 
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="flex flex-col h-full px-3 py-2.5 bg-white/90 border border-foreground/5 rounded-[6px] shadow-[0_1px_6px_rgba(225,82,61,0.02)] transition-all duration-300 relative overflow-hidden group"
+        className="flex flex-col h-full px-3 py-2.5 bg-white/90 border border-foreground/5 rounded-lg shadow-[0_1px_6px_rgba(225,82,61,0.02)] transition-all duration-300 relative overflow-hidden group"
       >
         {/* Main Header / Top Section */}
         <div className="flex flex-col gap-1.5 flex-1 min-w-0">
            {/* Top Meta info: Category (Left) - Time (Right) */}
            <div className="flex justify-between items-center w-full">
-             <span className={`text-[8.5px] font-black uppercase tracking-[0.15em] ${theme.accentColor} opacity-50`}>
+             <Badge 
+               variant="secondary" 
+               className={`text-[8.5px] h-4.5 font-black uppercase tracking-[0.15em] border-none ${
+                 isHot ? 'bg-primary/10 text-primary' : 'bg-accent/20 text-foreground'
+               }`}
+             >
                {recipe.category}
-             </span>
+             </Badge>
              <span className="text-[9px] font-bold text-foreground/20 tabular-nums uppercase pr-0.5">{recipe.time}</span>
            </div>
            
@@ -63,12 +56,13 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
         <div className="mt-2.5 pt-2 border-t border-foreground/5 flex flex-wrap gap-1">
           {recipe.tags && recipe.tags.length > 0 ? (
             recipe.tags.map((tag) => (
-              <span 
+              <Badge 
                 key={tag} 
-                className={`px-1.5 py-0.5 rounded-[2px] text-[8px] font-bold tracking-tight ${theme.tagBg} ${theme.accentColor} opacity-80 border border-foreground/[0.03] uppercase`}
+                variant="outline" 
+                className="px-1.5 py-0 rounded-[2px] text-[8px] font-bold tracking-tight bg-white/50 border-foreground/5 text-foreground/50 opacity-80 uppercase"
               >
                 {tag}
-              </span>
+              </Badge>
             ))
           ) : (
             <span className="text-[8px] font-bold text-foreground/10 uppercase tracking-tighter">无标签记录</span>
@@ -76,7 +70,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
         </div>
 
         {/* Subtle accent indicator at the bottom edge */}
-        <div className={`absolute bottom-0 left-3 right-3 h-[1.5px] ${theme.accentColor.replace('text-', 'bg-')} opacity-[0.15]`} />
+        <div className={`absolute bottom-0 left-3 right-3 h-[1.5px] ${isHot ? 'bg-primary' : 'bg-accent'} opacity-[0.15]`} />
       </motion.div>
     </Link>
   );

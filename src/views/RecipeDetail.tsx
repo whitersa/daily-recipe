@@ -1,7 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Recipe, IngredientGroup, StepGroup } from "@/lib/mocks";
+import { Recipe } from "@/lib/mocks";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 interface Asset {
   id: number;
@@ -76,10 +78,10 @@ export default function RecipeDetail({ recipes }: { recipes: Recipe[] }) {
 
       <div className="flex-1 overflow-y-auto no-scrollbar relative z-10 w-full px-8 pt-32 pb-40">
          <div className="mb-14">
-            <div className="flex items-center gap-3 mb-4 opacity-40">
-               <span className="text-[10px] font-bold uppercase tracking-widest text-foreground">{recipe.category}</span>
-               <span className="w-1 h-1 rounded-full bg-foreground"></span>
-               <span className="text-[10px] font-semibold tracking-wider text-foreground">{recipe.time}</span>
+            <div className="flex items-center gap-2.5 mb-5 overflow-hidden">
+               <Badge variant="outline" className="border-foreground/10 text-foreground/40 font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-[4px] h-auto">{recipe.category}</Badge>
+               <Separator orientation="vertical" className="h-3 bg-foreground/10" />
+               <span className="text-[10px] font-semibold tracking-wider text-foreground opacity-40">{recipe.time}</span>
             </div>
             <h1 className="text-[44px] leading-[1.05] font-bold tracking-tight text-foreground mb-6 pr-4">{recipe.title}</h1>
             {recipe.description && <p className="text-[17px] text-foreground opacity-80 leading-relaxed font-medium">{recipe.description}</p>}
@@ -87,7 +89,10 @@ export default function RecipeDetail({ recipes }: { recipes: Recipe[] }) {
 
          {/* --- GROUPED INGREDIENTS --- */}
          <div className="mb-14 space-y-10">
-            <h3 className="text-[11px] font-bold text-foreground/40 tracking-widest uppercase border-b border-foreground/[0.04] pb-2">食材系统配置</h3>
+            <div className="space-y-2">
+              <h3 className="text-[11px] font-bold text-foreground/30 tracking-widest uppercase">食材系统配置</h3>
+              <Separator className="bg-foreground/[0.04]" />
+            </div>
             {(recipe.ingredients || []).map((group: any, gIdx: number) => (
               <div key={gIdx} className="space-y-4">
                 <h4 className="text-[10px] font-bold text-primary/60 uppercase tracking-[0.22em] flex items-center gap-2">
@@ -107,7 +112,10 @@ export default function RecipeDetail({ recipes }: { recipes: Recipe[] }) {
 
          {/* --- GROUPED STEPS --- */}
          <div className="space-y-12">
-            <h3 className="text-[11px] font-bold text-foreground/40 tracking-widest uppercase border-b border-foreground/[0.04] pb-2">核心作业流程</h3>
+            <div className="space-y-2">
+              <h3 className="text-[11px] font-bold text-foreground/30 tracking-widest uppercase">核心作业流程</h3>
+              <Separator className="bg-foreground/[0.04]" />
+            </div>
             {(recipe.steps || []).map((group: any, gIdx: number) => (
               <div key={gIdx} className="space-y-6">
                 <h4 className="text-[10px] font-bold text-accent/80 uppercase tracking-[0.22em] flex items-center gap-2">

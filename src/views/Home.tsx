@@ -1,12 +1,14 @@
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import RecipeCard from "@/components/RecipeCard";
 import SearchHeader from "@/components/SearchHeader";
 import BottomDock from "@/components/BottomDock";
 import { Recipe } from "@/lib/mocks";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export default function Home({ recipes }: { recipes: Recipe[] }) {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const selectedCat = searchParams.get('cat') || '全部';
   const filteredRecipes = selectedCat === '全部' ? recipes : recipes.filter(r => r.category === selectedCat);
 
@@ -25,23 +27,25 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
         </div>
         
         {/* Compact Pill Navigation - Refined Scale */}
-        <nav className="flex gap-2 overflow-x-auto no-scrollbar pt-4 pb-5">
-          {['全部', '早餐', '午餐', '晚餐', '甜点', '轻食'].map((cat) => {
-            const isActive = cat === selectedCat;
-            return (
-              <Link
+        <nav className="pt-4 pb-5">
+          <ToggleGroup 
+            type="single" 
+            value={selectedCat} 
+            onValueChange={(v: any) => {
+              if (v) navigate(`/?cat=${v}`);
+            }}
+            className="flex gap-2 justify-start overflow-x-auto no-scrollbar pb-1"
+          >
+            {['全部', '早餐', '午餐', '晚餐', '甜点', '轻食'].map((cat) => (
+              <ToggleGroupItem
                 key={cat}
-                to={`/?cat=${cat}`}
-                className={`flex-none flex items-center justify-center px-3.5 py-1.5 rounded-[4px] text-[11px] font-bold transition-all duration-300 outline-none ${
-                    isActive 
-                    ? 'bg-primary text-white shadow-[0_4px_12px_rgba(225,82,61,0.2)]' 
-                    : 'bg-white/80 border border-foreground/[0.03] text-foreground/40 hover:text-primary/60 hover:bg-white'
-                  }`}
+                value={cat}
+                className="flex-none px-3.5 py-1.5 h-auto rounded-lg border border-foreground/[0.03] bg-white/80 text-[11px] font-bold text-foreground/40 transition-all duration-300 data-[pressed]:bg-primary data-[pressed]:text-white hover:text-primary/60 hover:bg-white shadow-sm"
               >
                 <span className="-translate-y-[0.5px] tracking-tight">{cat}</span>
-              </Link>
-            );
-          })}
+              </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
         </nav>
       </header>
 
@@ -54,7 +58,7 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
               </div>
             ))
           ) : (
-            <div className="py-24 text-center mt-4">
+            <div className="py-24 text-center mt-4 col-span-2">
               <span className="text-4xl opacity-20 grayscale">📦</span>
               <p className="text-foreground/40 text-[13px] font-semibold mt-4">未找到相关的食谱档案。</p>
             </div>

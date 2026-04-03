@@ -8,14 +8,17 @@ export default function SearchHeader() {
   return (
     <div className="flex flex-col gap-2 mb-1">
       {/* Integrated Search Bar - Shapeless Glass */}
-      <div className="flex gap-2 h-10">
-        <div className="relative flex-1 group">
+      <div className="flex gap-2 h-10 relative isolate">
+        <div className="relative flex-1 group isolate">
+          {/* Detached Background Layer to prevent cursor glitch */}
+          <div className="absolute inset-0 bg-white/70 backdrop-blur-xl border border-white/80 rounded-[6px] -z-10 pointer-events-none transition-all group-within:bg-white group-within:shadow-[0_4px_20px_rgba(0,0,0,0.04)]"></div>
+          
           <input 
             type="text" 
             placeholder="搜索食谱档案..."
-            className="w-full h-full bg-white/70 backdrop-blur-xl border border-white/80 rounded-[6px] px-11 text-[16px] font-bold text-[#1C1C1E] focus:shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus:bg-white transition-all outline-none placeholder:text-black/30 placeholder:tracking-widest appearance-none"
+            className="w-full h-10 bg-transparent px-11 text-[16px] font-bold text-[#1C1C1E] outline-none placeholder:text-black/20 placeholder:tracking-widest appearance-none leading-normal"
           />
-          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/30 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
             <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
         </div>

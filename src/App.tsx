@@ -9,26 +9,47 @@ import Assets from './views/Assets';
 import UpdatePrompt from './components/UpdatePrompt';
 import { AnimatePresence } from 'framer-motion';
 
-const MOCK_RECIPES = [
+const MOCK_RECIPES: any[] = [
   {
     id: 1,
-    title: '番茄牛腩面1',
-    description: '浓郁酸甜的番茄汤底，搭配筋道的牛腩，是冬日里最温暖的选择。',
+    title: '番茄牛腩面',
+    description: '浓郁酸甜的番茄汤底，搭配筋道的牛腩。',
     category: '午餐',
     time: '45 min',
-    ingredients: ['牛腩 500g', '番茄 3个', '手擀面 200g', '生姜', '大葱'],
-    steps: ['牛腩切块焯水', '番茄炒成浓汤', '加入牛腩慢炖', '煮面并淋入汤汁']
+    tags: ['硬菜', '家常'],
+    ingredients: [
+      { name: '主要食材', items: ['牛腩 500g', '番茄 3个', '手擀面 200g'] }
+    ],
+    steps: [
+      { name: '准备步骤', items: ['牛腩切块焯水', '番茄炒成浓汤'] },
+      { name: '正式烹饪', items: ['加入牛腩慢炖'] }
+    ]
   },
   {
     id: 2,
-    title: '晨间牛油果吐司',
-    description: '健康的油脂，清爽的口感，开启活力满满的一天。',
+    title: '牛油果吐司',
+    description: '健康的油脂，开启活力满满的一天。',
     category: '早餐',
     time: '10 min',
-    ingredients: ['吐司 2片', '牛油果 1个', '鸡蛋 1个', '黑胡椒'],
-    steps: ['吐司烤至金黄', '牛油果捣碎抹开', '放上水波蛋', '撒盐和黑胡椒']
+    tags: ['低脂', '快手'],
+    ingredients: [
+      { name: '食材清单', items: ['吐司 2片', '牛油果 1个', '鸡蛋 1个'] }
+    ],
+    steps: [
+      { name: '制作过程', items: ['吐司烤至金黄', '牛油果捣碎抹开'] }
+    ]
   }
 ];
+
+export interface IngredientGroup {
+  name: string;
+  items: string[];
+}
+
+export interface StepGroup {
+  name: string;
+  items: string[];
+}
 
 export interface Recipe {
   id: number;
@@ -36,8 +57,9 @@ export interface Recipe {
   description: string;
   category: string;
   time: string;
-  ingredients: string[];
-  steps: string[];
+  tags: string[];
+  ingredients: IngredientGroup[]; // Correctly grouped
+  steps: StepGroup[]; // Correctly grouped
   image_url?: string;
 }
 

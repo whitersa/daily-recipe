@@ -32,10 +32,17 @@
     scrollbar-width: none;
   }
 
-  /* No More Boxy Glass Panels. Only Deep Free-Form Optics. */
-  .bloom-1 { @apply bg-gradient-to-br from-[#0A84FF] to-[#007AFF] opacity-20; }
-  .bloom-2 { @apply bg-gradient-to-br from-[#FF2D55] to-[#FF375F] opacity-20; }
-  .bloom-3 { @apply bg-gradient-to-br from-[#32ADE6] to-[#00C7BE] opacity-20; }
-  .bloom-4 { @apply bg-gradient-to-br from-[#FF9F0A] to-[#FFCC00] opacity-20; }
-  .bloom-5 { @apply bg-gradient-to-br from-[#BF5AF2] to-[#5E5CE6] opacity-20; }
+  /* Semantic Archive Links - Subtle but Distinct */
+  .asset-link {
+    @apply border-b border-dotted border-black/20 cursor-pointer transition-colors hover:border-black/60;
+  }
+  .asset-ingredient {
+    @apply text-blue-600/70 border-blue-500/10;
+  }
+  .asset-term {
+    @apply text-rose-600/70 border-rose-500/10;
+  }
+  .asset-dot {
+    @apply inline-block w-1 h-1 rounded-full bg-current -translate-y-1 mr-0.5 opacity-60;
+  }
 }

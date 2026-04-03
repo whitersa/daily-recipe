@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'prompt', // We will manage prompts ourselves to keep your beautiful UI
-      devOptions: { enabled: true },
+      devOptions: { enabled: false },
       manifest: {
         name: "Daily Recipe",
         short_name: "Recipe",
@@ -24,6 +24,15 @@ export default defineConfig({
       }
     })
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000', // Vercel Dev Server
+        changeOrigin: true,
+        rewrite: (path) => path
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')

@@ -24,21 +24,24 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
           <SearchHeader />
         </div>
         
-        {/* Completely Shapeless Navigation without dots */}
-        <nav className="flex gap-6 overflow-x-auto no-scrollbar pt-3 pb-2 pl-2">
-          {['全部', '早餐', '午餐', '晚餐', '甜点', '轻食'].map((cat) => (
-            <Link
-              key={cat}
-              to={`/?cat=${cat}`}
-              className={`flex-none text-[14px] tracking-wide transition-all duration-300 outline-none ${
-                cat === selectedCat 
-                ? 'text-[#1C1C1E] font-bold' 
-                : 'text-black/40 font-semibold hover:text-[#1C1C1E] hover:opacity-70'
-              }`}
-            >
-              {cat}
-            </Link>
-          ))}
+        {/* Compact Pill Navigation - Refined Scale */}
+        <nav className="flex gap-2 overflow-x-auto no-scrollbar pt-4 pb-5">
+          {['全部', '早餐', '午餐', '晚餐', '甜点', '轻食'].map((cat) => {
+            const isActive = cat === selectedCat;
+            return (
+              <Link
+                key={cat}
+                to={`/?cat=${cat}`}
+                className={`flex-none flex items-center justify-center px-3.5 py-1.5 rounded-[4px] text-[11.5px] font-bold transition-all duration-300 outline-none ${
+                    isActive 
+                    ? 'bg-[#1C1C1E] text-white shadow-sm' 
+                    : 'bg-white border border-black/[0.03] text-black/40 hover:text-black/60 hover:bg-black/[0.01]'
+                  }`}
+              >
+                <span className="-translate-y-[0.5px]">{cat}</span>
+              </Link>
+            );
+          })}
         </nav>
       </header>
 

@@ -107,40 +107,60 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
                   onChange={e => setTitle(e.target.value)}
                   className="w-full bg-transparent text-[22px] font-bold text-[#1C1C1E] outline-none placeholder:text-black/10"
                 />
-                <div className="grid grid-cols-2 gap-2">
-                  <select 
-                    value={category}
-                    onChange={e => setCategory(e.target.value)}
-                    className="w-full bg-white border border-black/[0.05] rounded-[4px] px-2 py-1.5 text-[12px] font-bold outline-none"
-                  >
-                    {['早餐', '午餐', '晚餐', '甜点', '轻食'].map(cat => (
-                      <option key={cat} value={cat}>{cat}</option>
-                    ))}
-                  </select>
-                  <input 
-                    type="text" 
-                    value={time}
-                    placeholder="20min"
-                    onChange={e => setTime(e.target.value)}
-                    className="w-full bg-white border border-black/[0.05] rounded-[4px] px-2 py-1.5 text-[12px] font-bold outline-none"
-                  />
-                </div>
-             </div>
+                 {/* Category Selection - Micro-Plus structured rectangles */}
+                 <div className="flex flex-wrap gap-1.5 pt-1 pb-1">
+                   {['早餐', '午餐', '晚餐', '甜点', '轻食'].map(cat => {
+                     const isActive = category === cat;
+                     return (
+                       <button 
+                         key={cat}
+                         type="button"
+                         onClick={() => setCategory(cat)}
+                         className={`relative flex items-center justify-center px-3.5 py-1.5 rounded-[4px] text-[11px] font-bold transition-all ${
+                           isActive 
+                           ? 'bg-[#1C1C1E] text-white shadow-sm' 
+                           : 'bg-white border border-black/[0.05] text-black/30 hover:bg-black/[0.01]'
+                         }`}
+                       >
+                         <span className="-translate-y-[0.5px]">{cat}</span>
+                       </button>
+                     );
+                   })}
+                 </div>
+                 
+                 <input 
+                   type="text" 
+                   value={time}
+                   placeholder="烹饪时长 (例: 20min)"
+                   onChange={e => setTime(e.target.value)}
+                   className="w-full bg-white border border-black/[0.05] rounded-[8px] px-3 py-2 text-[12px] font-bold outline-none placeholder:text-black/10 shadow-sm focus:border-[#0A84FF] transition-all"
+                 />
+              </div>
           </div>
 
-          <div className="flex flex-wrap gap-1.5 py-1">
-            {['低脂', '高蛋白', '快手', '家常', '硬菜', '创意'].map(tag => (
-              <button 
-                key={tag}
-                onClick={() => toggleTag(tag)}
-                className={`px-2.5 py-1 rounded-[3px] text-[10px] font-bold tracking-tight transition-all ${
-                  tags.includes(tag) ? 'bg-[#1C1C1E] text-white' : 'bg-white border border-black/5 text-black/30'
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
+           {/* Tags Selector - Micro-Plus */}
+           <div className="space-y-4">
+             <label className="text-[10px] font-bold tracking-[0.2em] text-[#1C1C1E] uppercase opacity-40 ml-1">标签分类 (TAGS)</label>
+             <div className="flex flex-wrap gap-1.5">
+               {['快餐', '传统', '硬菜', '低脂', '减脂', '深夜食堂'].map((tag) => {
+                 const isSelected = tags.includes(tag);
+                 return (
+                   <button
+                     key={tag}
+                     type="button"
+                     onClick={() => toggleTag(tag)}
+                     className={`px-3.5 py-1.5 rounded-[4px] text-[11px] font-bold transition-all ${
+                       isSelected 
+                       ? 'bg-[#1C1C1E] text-white' 
+                       : 'bg-white border border-black/5 text-black/30'
+                     }`}
+                   >
+                     <span className="-translate-y-[0.5px]">{tag}</span>
+                   </button>
+                 );
+               })}
+             </div>
+           </div>
         </section>
 
         {/* --- INGREDIENTS GROUPS --- */}

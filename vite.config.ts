@@ -7,8 +7,22 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate', 
+      registerType: 'autoUpdate',
       devOptions: { enabled: false },
+      workbox: {
+        // API 数据：Stale-While-Revalidate（先用缓存，后台更新）
+        runtimeCaching: [
+          {
+            urlPattern: /^\/api\//,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'api-cache',
+              expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 7 }, // 7天
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
+      },
       manifest: {
         name: "Daily Recipe",
         short_name: "Recipe",

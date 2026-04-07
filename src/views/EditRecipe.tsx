@@ -83,16 +83,20 @@ export default function EditRecipe({ recipes, onRefresh }: { recipes: Recipe[], 
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       className="flex flex-col h-[100vh] w-full relative overflow-hidden bg-background"
     >
-      <header className="px-5 pt-[env(safe-area-inset-top,0px)] mt-2 pb-2 flex items-center justify-between z-20 flex-none bg-background/40 backdrop-blur-md border-b border-foreground/[0.03]">
-        <Link to={`/recipe/${id}`} className="p-1 text-foreground/40 hover:text-foreground transition-colors">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      {/* 返回按钮 - 与详情页统一的浮动玻璃风格 */}
+      <div className="absolute top-0 left-0 z-30 px-5 pt-[env(safe-area-inset-top,0.5rem)]">
+        <Link
+          to={`/recipe/${id}`}
+          className="p-3 bg-white/40 backdrop-blur-2xl border border-white/60 shadow-sm rounded-[6px] text-foreground opacity-70 hover:opacity-100 transition-opacity inline-flex"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+            <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </Link>
-        <button onClick={handleUpdate} disabled={loading || !title} className="text-[14px] font-bold text-primary disabled:opacity-30 tracking-widest bg-primary/10 px-6 py-2 rounded-full">
-          {loading ? '...' : 'SAVE'}
-        </button>
-      </header>
+      </div>
 
-      <main className="flex-1 overflow-y-auto no-scrollbar px-5 py-4 space-y-8 pb-32">
+      <main className="flex-1 overflow-y-auto no-scrollbar px-5 pt-[env(safe-area-inset-top,0px)] pb-[160px] space-y-8">
+        <div className="pt-16" />
         <section className="space-y-4">
           <div className="flex gap-4 items-start">
              {/* Dynamic Emoji Input Square */}
@@ -184,9 +188,20 @@ export default function EditRecipe({ recipes, onRefresh }: { recipes: Recipe[], 
               </div>
             </section>
           ))}
-          <button onClick={() => addGroup('ing')} className="w-full border border-dashed border-foreground/10 rounded-[4px] py-1.5 text-[10px] font-bold text-foreground/40 tracking-widest uppercase">+ ADD GROUP</button>
+          <button onClick={() => addGroup('ing')} className="w-full border border-dashed border-foreground/10 rounded-[4px] py-1.5 text-[10px] font-bold text-foreground/40 tracking-widest">新建食材分组</button>
         </div>
       </main>
+      {/* 底部保存栏 */}
+      <div className="absolute bottom-[64px] left-0 right-0 px-5 pb-3">
+        <button
+          onClick={handleUpdate}
+          disabled={loading || !title}
+          className="w-full h-12 bg-primary text-white rounded-xl text-[13px] font-bold tracking-[0.2em] uppercase shadow-[0_8px_25px_rgba(225,82,61,0.25)] disabled:opacity-30 active:scale-[0.98] transition-all"
+        >
+          {loading ? '保存中...' : '保存档案'}
+        </button>
+      </div>
+
     </motion.div>
   );
 }

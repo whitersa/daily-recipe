@@ -76,18 +76,8 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       className="flex flex-col h-[100vh] w-full relative overflow-hidden bg-background"
     >
-      <header className="px-5 pt-[env(safe-area-inset-top,0px)] mt-2 pb-2 flex items-center justify-between z-20 flex-none bg-background/40 backdrop-blur-md border-b border-foreground/[0.03]">
-        <button 
-          onClick={handleSave} 
-          disabled={loading || !title} 
-          className="text-[14px] font-bold text-primary disabled:opacity-30 tracking-widest bg-primary/10 px-6 py-2 rounded-full"
-        >
-          {loading ? '...' : 'COMMIT'}
-        </button>
-      </header>
-
-      <main className="flex-1 overflow-y-auto no-scrollbar px-5 py-4 space-y-8 pb-[120px]">
-        <section className="space-y-4">
+      <main className="flex-1 overflow-y-auto no-scrollbar px-5 pt-[env(safe-area-inset-top,0px)] pb-[160px] space-y-8">
+        <section className="space-y-4 pt-4">
           <div className="flex gap-4 items-start">
              {/* Dynamic Emoji Input Square */}
              <div className="flex-none">
@@ -98,7 +88,7 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
                   onChange={e => setEmoji(e.target.value)}
                   className="w-16 h-16 bg-white border border-foreground/[0.05] rounded-[10px] text-center text-[32px] outline-none shadow-sm focus:border-primary transition-all"
                 />
-                <span className="block text-[8px] font-bold text-center mt-1 text-foreground/20 tracking-tighter uppercase">ARCHIVE ICON</span>
+                <span className="block text-[8px] font-bold text-center mt-1 text-foreground/20 tracking-tighter">菜品图标</span>
              </div>
              
              <div className="flex-1 space-y-2">
@@ -202,12 +192,12 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
                   }}
                   className="w-full py-1 text-[9px] font-bold text-foreground/20 tracking-[0.2em] hover:text-foreground/40"
                 >
-                  + ITEM
+                  + 添加食材
                 </button>
               </div>
             </section>
           ))}
-          <button onClick={() => addGroup('ing')} className="w-full border border-dashed border-foreground/10 rounded-[4px] py-1.5 text-[10px] font-bold text-foreground/40 tracking-widest uppercase">+ ADD GROUP</button>
+          <button onClick={() => addGroup('ing')} className="w-full border border-dashed border-foreground/10 rounded-[4px] py-1.5 text-[10px] font-bold text-foreground/40 tracking-widest">新建分组</button>
         </div>
 
         {/* --- STEPS GROUPS --- */}
@@ -248,14 +238,25 @@ export default function NewRecipe({ onRefresh }: { onRefresh: () => void }) {
                   }}
                   className="w-full py-1 text-[9px] font-bold text-foreground/20 tracking-[0.2em] hover:text-foreground/40"
                 >
-                  + STEP
+                  + 添加步骤
                 </button>
               </div>
             </section>
           ))}
-          <button onClick={() => addGroup('step')} className="w-full border border-dashed border-foreground/10 rounded-[4px] py-1.5 text-[10px] font-bold text-foreground/40 tracking-widest uppercase">+ ADD GROUP</button>
+          <button onClick={() => addGroup('step')} className="w-full border border-dashed border-foreground/10 rounded-[4px] py-1.5 text-[10px] font-bold text-foreground/40 tracking-widest">新建分组</button>
         </div>
       </main>
+
+      {/* 底部提交栏 */}
+      <div className="absolute bottom-[64px] left-0 right-0 px-5 pb-3">
+        <button
+          onClick={handleSave}
+          disabled={loading || !title}
+          className="w-full h-12 bg-primary text-white rounded-xl text-[13px] font-bold tracking-[0.2em] uppercase shadow-[0_8px_25px_rgba(225,82,61,0.25)] disabled:opacity-30 active:scale-[0.98] transition-all"
+        >
+          {loading ? '归档中...' : '提交归档'}
+        </button>
+      </div>
 
       <BottomDock activeTab="compose" />
     </motion.div>

@@ -1,150 +1,111 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import BottomDock from "@/components/BottomDock";
 
-interface Asset {
-  id?: number;
-  name: string;
-  type: string;
-  description: string;
-}
+// ─── 模块定义 ─────────────────────────────────────────────────────────────────
+
+export const ASSET_MODULES = [
+  {
+    id: "ingredient",
+    label: "食材库",
+    sublabel: "INGREDIENTS",
+    emoji: "🧄",
+    accent: "bg-primary/8 border-primary/10 hover:border-primary/25",
+    dot: "bg-primary",
+    description: "核心原料索引",
+  },
+  {
+    id: "term",
+    label: "处理工序",
+    sublabel: "TECHNIQUES",
+    emoji: "🔪",
+    accent: "bg-accent/10 border-accent/15 hover:border-accent/40",
+    dot: "bg-accent",
+    description: "标准操作术语",
+  },
+  {
+    id: "tag",
+    label: "风味标签",
+    sublabel: "FLAVOR TAGS",
+    emoji: "🏷️",
+    accent: "bg-foreground/[0.03] border-foreground/[0.05] hover:border-foreground/[0.12]",
+    dot: "bg-foreground/40",
+    description: "菜肴风味分类",
+  },
+  {
+    id: "equipment",
+    label: "厨具器材",
+    sublabel: "EQUIPMENT",
+    emoji: "🍳",
+    accent: "bg-foreground/[0.02] border-foreground/[0.04] hover:border-foreground/[0.10]",
+    dot: "bg-foreground/30",
+    description: "常用工具档案",
+  },
+] as const;
+
+export type AssetModuleId = typeof ASSET_MODULES[number]["id"];
+
+// ─── Assets 首页（方块网格）──────────────────────────────────────────────────
 
 export default function Assets() {
-  const [assets, setAssets] = useState<Asset[]>([]);
-  const [loadingType, setLoadingType] = useState<string | null>(null);
-  
-  // Inline States for Quick Add
-  const [ingName, setIngName] = useState("");
-  const [termName, setTermName] = useState("");
-
-  const fetchAssets = () => {
-    fetch('/api/assets').then(res => res.json()).then(setAssets).catch(console.error);
-  };
-
-  useEffect(() => {
-    fetchAssets();
-  }, []);
-
-  const handleQuickAdd = async (name: string, type: string) => {
-    if (!name) return;
-    setLoadingType(type);
-    try {
-      const res = await fetch('/api/assets', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, type, description: "" })
-      });
-      if (res.ok) {
-        fetchAssets();
-        if(type === 'ingredient') setIngName("");
-        else setTermName("");
-      }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoadingType(null);
-    }
-  };
-
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.98 }}
-      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
       className="flex flex-col h-[100vh] w-full relative overflow-hidden bg-background"
     >
-      <header className="px-5 pt-[env(safe-area-inset-top,0px)] mt-2 pb-2 flex items-center justify-end z-20 flex-none bg-background/40 backdrop-blur-md border-b border-foreground/[0.03]">
-        <span className="text-[10px] font-bold text-foreground/20 tracking-widest uppercase">SYMBOLOGY CORE / {assets.length} ITEMS</span>
-      </header>
-
-      <main className="flex-1 overflow-y-auto no-scrollbar px-5 py-4 space-y-8 pb-[120px]">
-        
-        {/* Section 1: Ingredients */}
-        <section className="space-y-3">
-          <div className="flex items-center justify-between border-b border-foreground/[0.03] pb-2">
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-              <h2 className="text-[13px] font-bold text-foreground tracking-tight">核心食材库</h2>
-            </div>
-            <span className="text-[10px] font-bold text-foreground/20 uppercase">{assets.filter(a => a.type === 'ingredient').length} ITEMS</span>
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            {assets.filter(a => a.type === 'ingredient').map(asset => (
-              <div key={asset.id} className="bg-white border border-foreground/[0.02] rounded-[4px] px-3 py-2 flex justify-between items-center group shadow-sm transition-all hover:border-primary/20">
-                <span className="text-[14px] font-medium text-foreground">{asset.name}</span>
-                <span className="text-[8px] font-bold text-foreground/10 transition-opacity group-hover:opacity-100 opacity-0 tracking-tighter">DELETE</span>
-              </div>
-            ))}
-            
-            {/* Inline Quick Add - Ingredients */}
-            <div className="relative mt-1">
-              <input 
-                type="text" 
-                placeholder="追加新食材..." 
-                value={ingName}
-                onChange={e => setIngName(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleQuickAdd(ingName, 'ingredient')}
-                className="w-full bg-white/60 border border-dashed border-foreground/10 rounded-[4px] px-3 py-2 text-[13px] font-medium outline-none focus:border-primary/30 focus:bg-white transition-all"
-              />
-              <button 
-                onClick={() => handleQuickAdd(ingName, 'ingredient')}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-primary/40 hover:text-primary"
+      {/* 方块网格 */}
+      <main className="flex-1 overflow-y-auto no-scrollbar px-5 pt-[env(safe-area-inset-top,0px)] pt-5 pb-[120px]">
+        <div className="grid grid-cols-2 gap-3">
+          {ASSET_MODULES.map((mod, i) => (
+            <motion.div
+              key={mod.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.07, duration: 0.3, ease: "easeOut" }}
+            >
+              <Link
+                to={`/assets/${mod.id}`}
+                className={`flex flex-col justify-between p-4 rounded-lg border ${mod.accent} transition-all duration-300 active:scale-[0.97] block`}
+                style={{ minHeight: 120 }}
               >
-                {loadingType === 'ingredient' ? '...' : <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" strokeWidth="3" strokeLinecap="round"/></svg>}
-              </button>
-            </div>
-          </div>
-        </section>
+                {/* 顶部：emoji + 小标签 */}
+                <div className="flex items-start justify-between">
+                  <span className="text-[26px] leading-none">{mod.emoji}</span>
+                  <div className={`w-1.5 h-1.5 rounded-full ${mod.dot} opacity-60 mt-1`} />
+                </div>
 
-        {/* Section 2: Techniques */}
-        <section className="space-y-3">
-          <div className="flex items-center justify-between border-b border-foreground/[0.03] pb-2">
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent"></div>
-              <h2 className="text-[13px] font-bold text-foreground tracking-tight">标准处理工序</h2>
-            </div>
-            <span className="text-[10px] font-bold text-foreground/20 uppercase">{assets.filter(a => a.type === 'term').length} TERMS</span>
-          </div>
+                {/* 底部：模块名称 */}
+                <div className="mt-auto pt-3">
+                  <p className="text-[10px] font-bold text-foreground/25 tracking-[0.15em] uppercase mb-0.5">
+                    {mod.sublabel}
+                  </p>
+                  <p className="text-[15px] font-bold text-foreground/80 tracking-tight">
+                    {mod.label}
+                  </p>
+                  <p className="text-[10px] text-foreground/30 mt-0.5">{mod.description}</p>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
 
-          <div className="flex flex-col gap-1.5">
-            {assets.filter(a => a.type === 'term').map(asset => (
-              <div key={asset.id} className="bg-white border border-foreground/[0.02] rounded-[4px] px-3 py-2 flex justify-between items-center group shadow-sm transition-all hover:border-accent/30">
-                <span className="text-[14px] font-medium text-foreground">{asset.name}</span>
-                <span className="text-[8px] font-bold text-foreground/10 transition-opacity group-hover:opacity-100 opacity-0 tracking-tighter">DELETE</span>
-              </div>
-            ))}
-            
-            {/* Inline Quick Add - Techniques */}
-            <div className="relative mt-1">
-              <input 
-                type="text" 
-                placeholder="追加处理工艺..." 
-                value={termName}
-                onChange={e => setTermName(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleQuickAdd(termName, 'term')}
-                className="w-full bg-white/60 border border-dashed border-foreground/10 rounded-[4px] px-3 py-2 text-[13px] font-medium outline-none focus:border-accent/40 focus:bg-white transition-all"
-              />
-              <button 
-                onClick={() => handleQuickAdd(termName, 'term')}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-accent/50 hover:text-accent"
-              >
-                {loadingType === 'term' ? '...' : <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" strokeWidth="3" strokeLinecap="round"/></svg>}
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section className="pt-10 opacity-40 hover:opacity-100 transition-opacity">
-           <div className="p-4 rounded-[6px] border border-foreground/5 bg-foreground/[0.01] space-y-2">
-              <h4 className="text-[11px] font-bold text-foreground/40 tracking-widest uppercase">存档哲学</h4>
-              <p className="text-[12px] text-foreground/30 leading-relaxed italic">
-                这里保存的是你烹饪宇宙中的“原子”。你在这里定义的每一个词，都会自动在所有的档案正文中生效。减少噪音，建立标准。
-              </p>
-           </div>
-        </section>
-
+        {/* 底部哲学 */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="mt-6 p-4 rounded-lg border border-foreground/[0.03] bg-foreground/[0.01]"
+        >
+          <p className="text-[10px] font-bold text-foreground/25 tracking-[0.15em] uppercase mb-1">
+            ARCHIVE PHILOSOPHY
+          </p>
+          <p className="text-[12px] text-foreground/30 leading-relaxed italic">
+            这里保存的是你烹饪宇宙中的"原子"。每一个词，都会自动在所有档案正文中生效。减少噪音，建立标准。
+          </p>
+        </motion.div>
       </main>
 
       <BottomDock activeTab="assets" />
